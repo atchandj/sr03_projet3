@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<xsd:element name="annuaire">
+    <xsd:complexType>
+
+        <xsd:element name="categorie" maxOccurs="unbounded">
+        	<xsd:complexType>
+	        	<xsd:element name="annonce" maxOccurs="unbounded">
+
+	        		<xsd:all>
+			            <xsd:element name="nom" type="xsd:string"></xsd:element>
+			            <xsd:element name="tel" type="xsd:string"></xsd:element>
+
+			            <xsd:element name="adresse">
+			            	<xsd:complexType>
+			            		<xsd:all>
+			            			<xsd:element name="rue" type="xsd:string"></xsd:element>
+			            			<xsd:element name="ville" type="xsd:string"></xsd:element>
+			            			<xsd:element name="code postal" type="xsd:string"></xsd:element>
+			            		</xsd:all>
+			            	</xsd:complexType>
+			            </xsd:element>
+			        </xsd:all>
+
+	        	</xsd:element>	        	
+
+	        </xsd:complexType>
+        </xsd:element>
+
+    </xsd:complexType>
+</xsd:element>
+
+</xsd:schema>
