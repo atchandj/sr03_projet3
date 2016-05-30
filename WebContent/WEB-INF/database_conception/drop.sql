@@ -1,0 +1,4 @@
+DROP TABLE Ad;
+DROP TABLE Adress;
+DROP TABLE Category;
+DROP TABLE YearBook;

@@ -1,0 +1,110 @@
+======================================== Modèle Logique de Données ========================================
+
+YearBook(
+	#id: INT,
+	name: VARCHAR(50)
+) avec KEY(name)
+
+/* Ajout d'une clé artificielle pour les performances */
+
+F+ = {
+	id -> name;
+	name -> id;
+}
+
+/* La relation YearBook est en 1NF car elle possède une clé et tous ses attributs sont atomiques.
+La relation YearBook est en 2NF car elle est en 1NF et que tout attribut n'appartenant pas à une clé ne dépend 
+pas seulement d'une partie d'une clé (ou encore que toutes les DF issues d'une clé sont élémentaires).
+La relation YearBook est en 3NF car elle est en 2NF et que tout attribut n'appartenant pas à une clé ne dépend pas d'un
+autre attribut n'appartenant pas à une clé (ou encore que toutes les DFE vers des attributs n'appartenant pas à une 
+clé, sont issues d'une clé).  
+La relation YearBook est en BCNF car elle est en 3NF et que tout attribut n'appartenant pas à une clé n'est pas source 
+d'une DF vers une partie d'une clé (ou encore toutes les DFE, celles dans F+, ont la forme K -> A
+où K est une clé et A un attribut n'appartenant pas à une clé). */
+
+-----------------------------------------------------------------------------------------------
+
+Category(
+	#id: INT,
+	name: VARCHAR(50)
+) avec KEY(name)
+
+/* Ajout d'une clé artificielle pour les performances */
+
+F+ = {
+	id -> name;
+	name -> id;
+}
+
+/* La relation Category est en 1NF car elle possède une clé et tous ses attributs sont atomiques.
+La relation Category est en 2NF car elle est en 1NF et que tout attribut n'appartenant pas à une clé ne dépend 
+pas seulement d'une partie d'une clé (ou encore que toutes les DF issues d'une clé sont élémentaires).
+La relation Category est en 3NF car elle est en 2NF et que tout attribut n'appartenant pas à une clé ne dépend pas d'un
+autre attribut n'appartenant pas à une clé (ou encore que toutes les DFE vers des attributs n'appartenant pas à une 
+clé, sont issues d'une clé).  
+La relation Category est en BCNF car elle est en 3NF et que tout attribut n'appartenant pas à une clé n'est pas source 
+d'une DF vers une partie d'une clé (ou encore toutes les DFE, celles dans F+, ont la forme K -> A
+où K est une clé et A un attribut n'appartenant pas à une clé). */
+
+-----------------------------------------------------------------------------------------------
+
+
+Adress(
+	#id: INT,
+	street: VARCHAR(100),
+	town: VARCHAR(50),
+	postCode: VARCHAR(5)
+) avec KEY(street, town, postCode)
+
+/* Ajout d'une clé artificielle pour les performances */
+
+F+ = {
+	id -> (street, town, postCode);
+	(street, town, postCode) -> id;
+}
+
+/* La relation Adress est en 1NF car elle possède une clé et tous ses attributs sont atomiques.
+La relation Adress est en 2NF car elle est en 1NF et que tout attribut n'appartenant pas à une clé ne dépend 
+pas seulement d'une partie d'une clé (ou encore que toutes les DF issues d'une clé sont élémentaires).
+La relation Adress est en 3NF car elle est en 2NF et que tout attribut n'appartenant pas à une clé ne dépend pas d'un
+autre attribut n'appartenant pas à une clé (ou encore que toutes les DFE vers des attributs n'appartenant pas à une 
+clé, sont issues d'une clé).  
+La relation Adress est en BCNF car elle est en 3NF et que tout attribut n'appartenant pas à une clé n'est pas source 
+d'une DF vers une partie d'une clé (ou encore toutes les DFE, celles dans F+, ont la forme K -> A
+où K est une clé et A un attribut n'appartenant pas à une clé). */
+
+-----------------------------------------------------------------------------------------------
+
+Ad(
+	#id: INT,
+	yearBook=>YearBook,
+	name: VARCHAR(50),
+	phone: VARCHAR(10),
+	category=>Category,
+	adress=>Adress
+) avec KEY(yearBook, name) et phone, category, adress NOT NULL
+
+/* Ajout d'une clé artificielle pour les performances */
+
+F+ = {
+	id -> (yearBook, name);
+	id -> phone;
+	id -> category;
+	id -> adress;
+	(yearBook, name) -> id;
+	(yearBook, name) -> phone;
+	(yearBook, name) -> category;
+	(yearBook, name) -> adress;
+}
+
+/* La relation Ad est en 1NF car elle possède une clé et tous ses attributs sont atomiques.
+La relation Ad est en 2NF car elle est en 1NF et que tout attribut n'appartenant pas à une clé ne dépend 
+pas seulement d'une partie d'une clé (ou encore que toutes les DF issues d'une clé sont élémentaires).
+La relation Ad est en 3NF car elle est en 2NF et que tout attribut n'appartenant pas à une clé ne dépend pas d'un
+autre attribut n'appartenant pas à une clé (ou encore que toutes les DFE vers des attributs n'appartenant pas à une 
+clé, sont issues d'une clé).  
+La relation Ad est en BCNF car elle est en 3NF et que tout attribut n'appartenant pas à une clé n'est pas source 
+d'une DF vers une partie d'une clé (ou encore toutes les DFE, celles dans F+, ont la forme K -> A
+où K est une clé et A un attribut n'appartenant pas à une clé). */
+
+-----------------------------------------------------------------------------------------------
