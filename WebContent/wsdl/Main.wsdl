@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://DefaultNamespace" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://DefaultNamespace" xmlns:intf="http://DefaultNamespace" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://DefaultNamespace" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="dropCategory">
+    <complexType>
+     <sequence>
+      <element name="category" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="dropCategoryResponse">
+    <complexType/>
+   </element>
+   <element name="updateCategory">
+    <complexType>
+     <sequence>
+      <element name="oldCategoryName" type="xsd:string"/>
+      <element name="newCategoryName" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="updateCategoryResponse">
+    <complexType/>
+   </element>
+   <element name="addCategory">
+    <complexType>
+     <sequence>
+      <element name="categoryName" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addCategoryResponse">
+    <complexType/>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="dropCategoryResponse">
+
+      <wsdl:part element="impl:dropCategoryResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addCategoryRequest">
+
+      <wsdl:part element="impl:addCategory" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="dropCategoryRequest">
+
+      <wsdl:part element="impl:dropCategory" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="updateCategoryRequest">
+
+      <wsdl:part element="impl:updateCategory" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="updateCategoryResponse">
+
+      <wsdl:part element="impl:updateCategoryResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addCategoryResponse">
+
+      <wsdl:part element="impl:addCategoryResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="Main">
+
+      <wsdl:operation name="dropCategory">
+
+         <wsdl:input message="impl:dropCategoryRequest" name="dropCategoryRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:dropCategoryResponse" name="dropCategoryResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="updateCategory">
+
+         <wsdl:input message="impl:updateCategoryRequest" name="updateCategoryRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:updateCategoryResponse" name="updateCategoryResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addCategory">
+
+         <wsdl:input message="impl:addCategoryRequest" name="addCategoryRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addCategoryResponse" name="addCategoryResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="MainSoapBinding" type="impl:Main">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="dropCategory">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="dropCategoryRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="dropCategoryResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="updateCategory">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="updateCategoryRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="updateCategoryResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addCategory">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addCategoryRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addCategoryResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="MainService">
+
+      <wsdl:port binding="impl:MainSoapBinding" name="Main">
+
+         <wsdlsoap:address location="http://localhost:8080/sr03_projet3/services/Main"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

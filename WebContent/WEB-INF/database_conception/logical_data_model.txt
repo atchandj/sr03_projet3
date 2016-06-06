@@ -76,7 +76,6 @@ où K est une clé et A un attribut n'appartenant pas à une clé). */
 -----------------------------------------------------------------------------------------------
 
 Ad(
-	#id: INT,
 	yearBook=>YearBook,
 	name: VARCHAR(50),
 	phone: VARCHAR(10),
@@ -84,13 +83,7 @@ Ad(
 	adress=>Adress
 ) avec KEY(yearBook, name) et phone, category, adress NOT NULL
 
-/* Ajout d'une clé artificielle pour les performances */
-
 F+ = {
-	id -> (yearBook, name);
-	id -> phone;
-	id -> category;
-	id -> adress;
 	(yearBook, name) -> id;
 	(yearBook, name) -> phone;
 	(yearBook, name) -> category;

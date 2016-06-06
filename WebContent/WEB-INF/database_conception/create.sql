@@ -30,19 +30,15 @@ CREATE TABLE Adress(
 -- /* Ajout d'une clé artificielle pour les performances */
 
 CREATE TABLE Ad(
-	id INT AUTO_INCREMENT,
 	yearBook INT NOT NULL,
 	name VARCHAR(50) NOT NULL,
 	phone VARCHAR(10) NOT NULL,
 	category INT NOT NULL,
 	adress INT NOT NULL,
-	PRIMARY KEY(id),
 	UNIQUE(yearBook, name),
 	FOREIGN KEY(yearBook) REFERENCES YearBook(id) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY(category) REFERENCES Category(id),
 	FOREIGN KEY(adress) REFERENCES Adress(id)
 );
-
--- /* Ajout d'une clé artificielle pour les performances */
 
 -- -----------------------------------------------------------------------------------------------
