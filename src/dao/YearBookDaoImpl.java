@@ -13,13 +13,14 @@ public class YearBookDaoImpl implements YearBookDao {
 	}
     
     @Override
-    public void dropAd(String adName) throws DaoException{
+    public void dropAd(int yearBook, String adName) throws DaoException{
     	Connection connexion = null;
         PreparedStatement preparedStatement = null;
         try{
             connexion = daoFactory.getConnection();
-            preparedStatement = (PreparedStatement) connexion.prepareStatement("DELETE FROM Ad WHERE yearBook=1 AND name=?;");
-            preparedStatement.setString(1, adName);
+            preparedStatement = (PreparedStatement) connexion.prepareStatement("DELETE FROM Ad WHERE yearBook=? AND name=?;");
+            preparedStatement.setInt(1, yearBook);
+            preparedStatement.setString(2, adName);
             int result = preparedStatement.executeUpdate();
             connexion.commit();
             if(result == 0){

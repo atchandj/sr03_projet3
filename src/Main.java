@@ -44,10 +44,10 @@ public class Main {
 		}
 	}
 	
-	public void dropAd(String adName){
+	public void dropAd(int yearBook, String adName){
 		System.out.println("Bonjour");
 		try {
-			this.yearBookDao.dropAd(adName);
+			this.yearBookDao.dropAd(yearBook, adName);
 		} catch (DaoException e) {
 			e.printStackTrace();
 		}

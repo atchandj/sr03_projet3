@@ -1,5 +1,5 @@
 package dao;
 
 public interface YearBookDao {
-    public void dropAd(String adName) throws DaoException;
+	public void dropAd(int yearBook, String adName) throws DaoException;
 }

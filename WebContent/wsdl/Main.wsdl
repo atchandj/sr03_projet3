@@ -28,6 +28,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <element name="dropAd">
     <complexType>
      <sequence>
+      <element name="yearBook" type="xsd:int"/>
       <element name="adName" type="xsd:string"/>
      </sequence>
     </complexType>

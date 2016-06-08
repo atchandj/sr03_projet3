@@ -18,6 +18,7 @@
         <parameter xmlns:pns="http://DefaultNamespace" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:categoryName" type="tns:string"/>
       </operation>
       <operation xmlns:operNS="http://DefaultNamespace" name="dropAd" qname="operNS:dropAd" soapAction="">
+        <parameter xmlns:pns="http://DefaultNamespace" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:yearBook" type="tns:int"/>
         <parameter xmlns:pns="http://DefaultNamespace" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:adName" type="tns:string"/>
       </operation>
       <operation xmlns:operNS="http://DefaultNamespace" name="dropCategory" qname="operNS:dropCategory" soapAction="">

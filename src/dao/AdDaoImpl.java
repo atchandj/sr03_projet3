@@ -1,10 +1,6 @@
 package dao;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Pattern;
 
 import com.mysql.jdbc.Connection;
@@ -74,11 +70,8 @@ public class AdDaoImpl implements AdDao {
     
     @Override
     public void addCategory(String categoryName) throws DaoException {
-    	System.out.println("hi");
     	Connection connexion = null;
         PreparedStatement preparedStatement = null;
-        System.out.println("hi");
-        System.out.println(categoryName);
         if(!Pattern.matches("^[a-zA-Z]+$", categoryName)){
         	throw new DaoException("Veuillez saisir des données cohérentes.");
         }  
