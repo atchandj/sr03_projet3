@@ -87,4 +87,12 @@ public class Main {
 			e.printStackTrace();
 		}
 	}
+	
+	public void modifyAd(int yearBook, String oldAdName, String oldStreet, String oldTown, String oldPostCode, String oldCategory, String newAdName, String newPhone, String newStreet, String newTown, String newPostCode, String newCategory){
+		try {
+			this.yearBookDao.modifyAd(yearBook, oldAdName, oldStreet, oldTown, oldPostCode, oldCategory, newAdName, newPhone, newStreet, newTown, newPostCode, newCategory);
+		} catch (DaoException e) {
+			e.printStackTrace();
+		}
+	}
 }

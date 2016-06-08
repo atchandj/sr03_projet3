@@ -24,6 +24,20 @@
       <operation xmlns:operNS="http://DefaultNamespace" xmlns:retNS="http://DefaultNamespace" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getAdsNames" qname="operNS:getAdsNames" returnQName="retNS:getAdsNamesReturn" returnType="rtns:string" soapAction="">
         <parameter xmlns:pns="http://DefaultNamespace" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:yearBook" type="tns:int"/>
       </operation>
+      <operation xmlns:operNS="http://DefaultNamespace" name="modifyAd" qname="operNS:modifyAd" soapAction="">
+        <parameter xmlns:pns="http://DefaultNamespace" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:yearBook" type="tns:int"/>
+        <parameter xmlns:pns="http://DefaultNamespace" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:oldAdName" type="tns:string"/>
+        <parameter xmlns:pns="http://DefaultNamespace" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:oldStreet" type="tns:string"/>
+        <parameter xmlns:pns="http://DefaultNamespace" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:oldTown" type="tns:string"/>
+        <parameter xmlns:pns="http://DefaultNamespace" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:oldPostCode" type="tns:string"/>
+        <parameter xmlns:pns="http://DefaultNamespace" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:oldCategory" type="tns:string"/>
+        <parameter xmlns:pns="http://DefaultNamespace" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:newAdName" type="tns:string"/>
+        <parameter xmlns:pns="http://DefaultNamespace" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:newPhone" type="tns:string"/>
+        <parameter xmlns:pns="http://DefaultNamespace" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:newStreet" type="tns:string"/>
+        <parameter xmlns:pns="http://DefaultNamespace" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:newTown" type="tns:string"/>
+        <parameter xmlns:pns="http://DefaultNamespace" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:newPostCode" type="tns:string"/>
+        <parameter xmlns:pns="http://DefaultNamespace" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:newCategory" type="tns:string"/>
+      </operation>
       <operation xmlns:operNS="http://DefaultNamespace" name="dropCategory" qname="operNS:dropCategory" soapAction="">
         <parameter xmlns:pns="http://DefaultNamespace" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:category" type="tns:string"/>
       </operation>
@@ -43,7 +57,7 @@
         <parameter xmlns:pns="http://DefaultNamespace" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:postCode" type="tns:string"/>
         <parameter xmlns:pns="http://DefaultNamespace" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:category" type="tns:string"/>
       </operation>
-      <parameter name="allowedMethods" value="addAd getAd getYearBook updateCategory dropCategory dropAd addCategory getAdsNames"/>
+      <parameter name="allowedMethods" value="addAd getAd getYearBook updateCategory dropCategory dropAd modifyAd addCategory getAdsNames"/>
 
   </service>
 </deployment>

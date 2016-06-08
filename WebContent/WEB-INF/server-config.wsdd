@@ -7,8 +7,8 @@
   <ns1:parameter name="dotNetSoapEncFix" value="true"/>
   <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
   <ns1:parameter name="sendXMLDeclaration" value="true"/>
-  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
   <ns1:parameter name="sendXsiTypes" value="true"/>
+  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
   <ns1:requestFlow>
    <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
     <ns1:parameter name="scope" value="session"/>
@@ -47,26 +47,40 @@
   <ns1:operation name="getAdsNames" qname="ns4:getAdsNames" returnQName="ns4:getAdsNamesReturn" returnType="xsd:string" soapAction="" xmlns:ns4="http://DefaultNamespace" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
    <ns1:parameter qname="ns4:yearBook" type="xsd:int"/>
   </ns1:operation>
-  <ns1:operation name="dropCategory" qname="ns5:dropCategory" soapAction="" xmlns:ns5="http://DefaultNamespace">
-   <ns1:parameter qname="ns5:category" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="modifyAd" qname="ns5:modifyAd" soapAction="" xmlns:ns5="http://DefaultNamespace">
+   <ns1:parameter qname="ns5:yearBook" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns5:oldAdName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns5:oldStreet" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns5:oldTown" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns5:oldPostCode" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns5:oldCategory" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns5:newAdName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns5:newPhone" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns5:newStreet" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns5:newTown" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns5:newPostCode" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns5:newCategory" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
   </ns1:operation>
-  <ns1:operation name="getYearBook" qname="ns6:getYearBook" returnQName="ns6:getYearBookReturn" returnType="xsd:string" soapAction="" xmlns:ns6="http://DefaultNamespace" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns6:yearBook" type="xsd:int"/>
+  <ns1:operation name="dropCategory" qname="ns6:dropCategory" soapAction="" xmlns:ns6="http://DefaultNamespace">
+   <ns1:parameter qname="ns6:category" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
   </ns1:operation>
-  <ns1:operation name="getAd" qname="ns7:getAd" returnQName="ns7:getAdReturn" returnType="xsd:string" soapAction="" xmlns:ns7="http://DefaultNamespace" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ns1:operation name="getYearBook" qname="ns7:getYearBook" returnQName="ns7:getYearBookReturn" returnType="xsd:string" soapAction="" xmlns:ns7="http://DefaultNamespace" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
    <ns1:parameter qname="ns7:yearBook" type="xsd:int"/>
-   <ns1:parameter qname="ns7:adName" type="xsd:string"/>
   </ns1:operation>
-  <ns1:operation name="addAd" qname="ns8:addAd" soapAction="" xmlns:ns8="http://DefaultNamespace">
-   <ns1:parameter qname="ns8:yearBook" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-   <ns1:parameter qname="ns8:adName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-   <ns1:parameter qname="ns8:phone" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-   <ns1:parameter qname="ns8:street" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-   <ns1:parameter qname="ns8:town" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-   <ns1:parameter qname="ns8:postCode" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-   <ns1:parameter qname="ns8:category" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="getAd" qname="ns8:getAd" returnQName="ns8:getAdReturn" returnType="xsd:string" soapAction="" xmlns:ns8="http://DefaultNamespace" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns8:yearBook" type="xsd:int"/>
+   <ns1:parameter qname="ns8:adName" type="xsd:string"/>
   </ns1:operation>
-  <ns1:parameter name="allowedMethods" value="addAd getAd getYearBook updateCategory dropCategory dropAd addCategory getAdsNames"/>
+  <ns1:operation name="addAd" qname="ns9:addAd" soapAction="" xmlns:ns9="http://DefaultNamespace">
+   <ns1:parameter qname="ns9:yearBook" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns9:adName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns9:phone" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns9:street" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns9:town" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns9:postCode" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns9:category" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="addAd getAd getYearBook updateCategory dropCategory dropAd modifyAd addCategory getAdsNames"/>
   <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="wsdlPortType" value="Main"/>
   <ns1:parameter name="className" value="Main"/>

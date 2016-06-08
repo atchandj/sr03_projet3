@@ -251,4 +251,44 @@ public class YearBookDaoImpl implements YearBookDao {
             }
         }
     }
+    
+    @Override
+    public void modifyAd(int yearBook, String oldAdName, String oldStreet, String oldTown, String oldPostCode, String oldCategory, String newAdName, String newPhone, String newStreet, String newTown, String newPostCode, String newCategory) throws DaoException {  
+    	Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+        String query = "CALL modifyAd(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        String databaseErrorMessage = "Impossible de communiquer avec la base de données";
+        try{
+            connexion = daoFactory.getConnection();
+            preparedStatement = (PreparedStatement) connexion.prepareStatement(query);
+            preparedStatement.setInt(1, yearBook);
+            preparedStatement.setString(2, oldAdName);
+            preparedStatement.setString(3, oldStreet);
+            preparedStatement.setString(4, oldTown);
+            preparedStatement.setString(5, oldPostCode);
+            preparedStatement.setString(6, oldCategory);
+            preparedStatement.setString(7, newAdName);
+            preparedStatement.setString(8, newPhone);
+            preparedStatement.setString(9, newStreet);
+            preparedStatement.setString(10, newTown);
+            preparedStatement.setString(11, newPostCode);
+            preparedStatement.setString(12, newCategory);
+            int result = preparedStatement.executeUpdate();
+            connexion.commit();
+            if(result == 0){
+            	throw new DaoException("Rien n'a été mis à jour.");
+            }
+        } catch (SQLException e) {
+            throw new DaoException(databaseErrorMessage + ": " + e.getMessage());
+        }
+        finally {
+            try {
+                if (connexion != null) {
+                    connexion.close();  
+                }
+            } catch (SQLException e) {
+                throw new DaoException(databaseErrorMessage + ": " + e.getMessage());
+            }
+        }
+    }
 }
