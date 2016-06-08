@@ -38,8 +38,16 @@ public class Main {
 	public void addCategory(String categoryName){
 		System.out.println("Bonjour");
 		try {
-			System.out.println("yo !");
 			this.adDao.addCategory(categoryName);
+		} catch (DaoException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void dropAd(String adName){
+		System.out.println("Bonjour");
+		try {
+			this.yearBookDao.dropAd(adName);
 		} catch (DaoException e) {
 			e.printStackTrace();
 		}

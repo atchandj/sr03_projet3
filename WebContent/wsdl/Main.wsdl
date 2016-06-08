@@ -4,16 +4,6 @@
 Built on Apr 22, 2006 (06:55:48 PDT)-->
  <wsdl:types>
   <schema elementFormDefault="qualified" targetNamespace="http://DefaultNamespace" xmlns="http://www.w3.org/2001/XMLSchema">
-   <element name="dropCategory">
-    <complexType>
-     <sequence>
-      <element name="category" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="dropCategoryResponse">
-    <complexType/>
-   </element>
    <element name="updateCategory">
     <complexType>
      <sequence>
@@ -35,8 +25,36 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <element name="addCategoryResponse">
     <complexType/>
    </element>
+   <element name="dropAd">
+    <complexType>
+     <sequence>
+      <element name="adName" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="dropAdResponse">
+    <complexType/>
+   </element>
+   <element name="dropCategory">
+    <complexType>
+     <sequence>
+      <element name="category" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="dropCategoryResponse">
+    <complexType/>
+   </element>
   </schema>
  </wsdl:types>
+
+   <wsdl:message name="addCategoryRequest">
+
+      <wsdl:part element="impl:addCategory" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
 
    <wsdl:message name="dropCategoryResponse">
 
@@ -46,9 +64,9 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="addCategoryRequest">
+   <wsdl:message name="dropAdResponse">
 
-      <wsdl:part element="impl:addCategory" name="parameters">
+      <wsdl:part element="impl:dropAdResponse" name="parameters">
 
       </wsdl:part>
 
@@ -65,6 +83,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <wsdl:message name="updateCategoryRequest">
 
       <wsdl:part element="impl:updateCategory" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="dropAdRequest">
+
+      <wsdl:part element="impl:dropAd" name="parameters">
 
       </wsdl:part>
 
@@ -87,18 +113,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    </wsdl:message>
 
    <wsdl:portType name="Main">
-
-      <wsdl:operation name="dropCategory">
-
-         <wsdl:input message="impl:dropCategoryRequest" name="dropCategoryRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:dropCategoryResponse" name="dropCategoryResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
 
       <wsdl:operation name="updateCategory">
 
@@ -124,29 +138,35 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
+      <wsdl:operation name="dropAd">
+
+         <wsdl:input message="impl:dropAdRequest" name="dropAdRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:dropAdResponse" name="dropAdResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="dropCategory">
+
+         <wsdl:input message="impl:dropCategoryRequest" name="dropCategoryRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:dropCategoryResponse" name="dropCategoryResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
    </wsdl:portType>
 
    <wsdl:binding name="MainSoapBinding" type="impl:Main">
 
       <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
-
-      <wsdl:operation name="dropCategory">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="dropCategoryRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="dropCategoryResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
 
       <wsdl:operation name="updateCategory">
 
@@ -177,6 +197,42 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="addCategoryResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="dropAd">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="dropAdRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="dropAdResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="dropCategory">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="dropCategoryRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="dropCategoryResponse">
 
             <wsdlsoap:body use="literal"/>
 
