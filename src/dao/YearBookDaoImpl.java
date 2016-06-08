@@ -156,4 +156,64 @@ public class YearBookDaoImpl implements YearBookDao {
         }
         return jsonInString;
     }
+    
+    @Override
+	public String getAd(int yearBook, String adName) throws DaoException{
+    	Ad ad = null;
+        Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+        ObjectMapper mapper = new ObjectMapper();        
+        String jsonInString = null;
+        try{
+            connexion = daoFactory.getConnection();
+            preparedStatement = (PreparedStatement) connexion.prepareStatement("SELECT A.yearBook AS yearBook, A.name AS adName, A.phone AS phone, Ad.id AS addressId, Ad.street AS street, Ad.town AS town, Ad.postCode AS postCode, C.id AS categoryId, C.name AS category "
+            		+ "FROM Ad A "
+            		+ "LEFT OUTER JOIN Address Ad ON  A.address = Ad.id "
+            		+ "LEFT OUTER JOIN Category C ON A.category = C.id "
+            		+ "WHERE A.yearBook = ? AND A.name = ?;");
+            preparedStatement.setInt(1, yearBook);
+            preparedStatement.setString(2, adName);
+            ResultSet result = preparedStatement.executeQuery();
+            boolean isResult = result.next();
+            if(isResult){
+            	String phone = result.getString("phone");
+            	int addressId = result.getInt("addressId");
+            	String street = result.getString("street");
+            	String town = result.getString("town");
+            	String postCode = result.getString("postCode");
+            	int categoryId = result.getInt("categoryId");
+            	String category = result.getString("category");    	
+            	ad = new Ad(yearBook, adName, phone);            	
+            	Category tmpCategory = null;
+            	Address tmpAdress = null;
+            	if(street != null){
+            		tmpAdress = new Address(addressId, street, town, postCode);
+            		ad.setAddress(tmpAdress);
+            	}else{
+            		ad.setAddress(null);
+            	}
+            	if(category != null){
+            		tmpCategory = new Category(categoryId, category);
+            		ad.setCategory(tmpCategory);
+            	}else{
+            		ad.setCategory(null);
+            	}
+        	}
+            jsonInString = mapper.writeValueAsString(ad);
+        } catch (SQLException e) {
+            throw new DaoException("Impossible de communiquer avec la base de données " + e.getMessage());
+        } catch (JsonProcessingException e) {
+        	throw new DaoException("Impossible de communiquer avec la base de données " + e.getMessage());
+		}
+        finally {
+            try {
+                if (connexion != null) {
+                    connexion.close();  
+                }
+            } catch (SQLException e) {
+                throw new DaoException("Impossible de communiquer avec la base de données");
+            }
+        }
+        return jsonInString;
+    }
 }

@@ -40,7 +40,11 @@
       <operation name="getYearBook" qname="operNS:getYearBook" xmlns:operNS="http://DefaultNamespace" returnQName="retNS:getYearBookReturn" xmlns:retNS="http://DefaultNamespace" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
         <parameter qname="pns:yearBook" xmlns:pns="http://DefaultNamespace" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
       </operation>
-      <parameter name="allowedMethods" value="getYearBook updateCategory dropCategory dropAd addCategory getAdsNames"/>
+      <operation name="getAd" qname="operNS:getAd" xmlns:operNS="http://DefaultNamespace" returnQName="retNS:getAdReturn" xmlns:retNS="http://DefaultNamespace" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:yearBook" xmlns:pns="http://DefaultNamespace" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:adName" xmlns:pns="http://DefaultNamespace" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="getAd getYearBook updateCategory dropCategory dropAd addCategory getAdsNames"/>
 
   </service>
 </deployment>

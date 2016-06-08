@@ -70,4 +70,13 @@ public class Main {
 		}
 		return null;		
 	}
+	
+	public String getAd(int yearBook, String adName){
+		try {
+			return this.yearBookDao.getAd(yearBook, adName);
+		} catch (DaoException e) {
+			e.printStackTrace();
+		}
+		return null;	
+	}
 }
