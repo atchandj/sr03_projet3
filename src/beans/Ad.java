@@ -8,9 +8,9 @@ public class Ad {
 	private String name;
 	private String phone;
 	private ArrayList<Category> categories;
-	private ArrayList<Adress> addresses;
+	private ArrayList<Address> addresses;
 	
-	public Ad(int yearBook, String name, String phone, ArrayList<Category> category, ArrayList<Adress> addresses) {
+	public Ad(int yearBook, String name, String phone, ArrayList<Category> category, ArrayList<Address> addresses) {
 		this.yearBook = yearBook;
 		this.name = name;
 		this.phone = phone;
@@ -50,11 +50,11 @@ public class Ad {
 		this.categories = categories;
 	}
 
-	public ArrayList<Adress> getAddresses() {
+	public ArrayList<Address> getAddresses() {
 		return addresses;
 	}
 
-	public void setAddresses(ArrayList<Adress> addresses) {
+	public void setAddresses(ArrayList<Address> addresses) {
 		this.addresses = addresses;
 	}
 

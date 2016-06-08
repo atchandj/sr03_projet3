@@ -1,19 +1,19 @@
 package beans;
 
-public class Adress {
+public class Address {
 	private int id;
 	private String street;
 	private String town;
 	private String postCode;
 	
-	public Adress(int id, String street, String town, String postCode) {
+	public Address(int id, String street, String town, String postCode) {
 		this.id = id;
 		this.street = street;
 		this.town = town;
 		this.postCode = postCode;
 	}
 	
-	public Adress(String street, String town, String postCode) {
+	public Address(String street, String town, String postCode) {
 		this.street = street;
 		this.town = town;
 		this.postCode = postCode;
