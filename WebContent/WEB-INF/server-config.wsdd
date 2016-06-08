@@ -7,8 +7,8 @@
   <ns1:parameter name="dotNetSoapEncFix" value="true"/>
   <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
   <ns1:parameter name="sendXMLDeclaration" value="true"/>
-  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
   <ns1:parameter name="sendXsiTypes" value="true"/>
+  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
   <ns1:requestFlow>
    <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
     <ns1:parameter name="scope" value="session"/>
@@ -33,21 +33,24 @@
   <ns1:parameter name="className" value="org.apache.axis.Version"/>
  </ns1:service>
  <ns1:service name="Main" provider="java:RPC" style="wrapped" use="literal">
-  <ns2:operation name="updateCategory" qname="ns1:updateCategory" soapAction="" xmlns:ns1="http://DefaultNamespace" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
-   <ns2:parameter qname="ns1:oldCategoryName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-   <ns2:parameter qname="ns1:newCategoryName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns2:operation name="getAdsNames" qname="ns1:getAdsNames" returnQName="ns1:getAdsNamesReturn" returnType="xsd:string" soapAction="" xmlns:ns1="http://DefaultNamespace" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
+   <ns2:parameter qname="ns1:yearBook" type="xsd:int"/>
   </ns2:operation>
-  <ns1:operation name="addCategory" qname="ns2:addCategory" soapAction="" xmlns:ns2="http://DefaultNamespace">
-   <ns1:parameter qname="ns2:categoryName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="updateCategory" qname="ns2:updateCategory" soapAction="" xmlns:ns2="http://DefaultNamespace">
+   <ns1:parameter qname="ns2:oldCategoryName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns2:newCategoryName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
   </ns1:operation>
-  <ns1:operation name="dropAd" qname="ns3:dropAd" soapAction="" xmlns:ns3="http://DefaultNamespace">
-   <ns1:parameter qname="ns3:yearBook" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-   <ns1:parameter qname="ns3:adName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="addCategory" qname="ns3:addCategory" soapAction="" xmlns:ns3="http://DefaultNamespace">
+   <ns1:parameter qname="ns3:categoryName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
   </ns1:operation>
-  <ns1:operation name="dropCategory" qname="ns4:dropCategory" soapAction="" xmlns:ns4="http://DefaultNamespace">
-   <ns1:parameter qname="ns4:category" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="dropAd" qname="ns4:dropAd" soapAction="" xmlns:ns4="http://DefaultNamespace">
+   <ns1:parameter qname="ns4:yearBook" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns4:adName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
   </ns1:operation>
-  <ns1:parameter name="allowedMethods" value="updateCategory dropCategory dropAd addCategory"/>
+  <ns1:operation name="dropCategory" qname="ns5:dropCategory" soapAction="" xmlns:ns5="http://DefaultNamespace">
+   <ns1:parameter qname="ns5:category" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="updateCategory dropCategory dropAd getAdsNames addCategory"/>
   <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="wsdlPortType" value="Main"/>
   <ns1:parameter name="className" value="Main"/>

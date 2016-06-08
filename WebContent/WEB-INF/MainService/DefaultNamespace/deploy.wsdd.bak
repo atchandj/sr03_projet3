@@ -20,6 +20,9 @@
       <parameter name="className" value="DefaultNamespace.MainSoapBindingImpl"/>
       <parameter name="wsdlPortType" value="Main"/>
       <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="getAdsNames" qname="operNS:getAdsNames" xmlns:operNS="http://DefaultNamespace" returnQName="retNS:getAdsNamesReturn" xmlns:retNS="http://DefaultNamespace" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:yearBook" xmlns:pns="http://DefaultNamespace" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
       <operation name="updateCategory" qname="operNS:updateCategory" xmlns:operNS="http://DefaultNamespace" soapAction="" >
         <parameter qname="pns:oldCategoryName" xmlns:pns="http://DefaultNamespace" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
         <parameter qname="pns:newCategoryName" xmlns:pns="http://DefaultNamespace" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
@@ -34,7 +37,7 @@
       <operation name="dropCategory" qname="operNS:dropCategory" xmlns:operNS="http://DefaultNamespace" soapAction="" >
         <parameter qname="pns:category" xmlns:pns="http://DefaultNamespace" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
       </operation>
-      <parameter name="allowedMethods" value="updateCategory dropCategory dropAd addCategory"/>
+      <parameter name="allowedMethods" value="updateCategory dropCategory dropAd getAdsNames addCategory"/>
 
   </service>
 </deployment>

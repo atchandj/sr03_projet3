@@ -4,6 +4,20 @@
 Built on Apr 22, 2006 (06:55:48 PDT)-->
  <wsdl:types>
   <schema elementFormDefault="qualified" targetNamespace="http://DefaultNamespace" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="getAdsNames">
+    <complexType>
+     <sequence>
+      <element name="yearBook" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getAdsNamesResponse">
+    <complexType>
+     <sequence>
+      <element name="getAdsNamesReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
    <element name="updateCategory">
     <complexType>
      <sequence>
@@ -49,6 +63,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
   </schema>
  </wsdl:types>
 
+   <wsdl:message name="getAdsNamesResponse">
+
+      <wsdl:part element="impl:getAdsNamesResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="addCategoryRequest">
 
       <wsdl:part element="impl:addCategory" name="parameters">
@@ -76,6 +98,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <wsdl:message name="dropCategoryRequest">
 
       <wsdl:part element="impl:dropCategory" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAdsNamesRequest">
+
+      <wsdl:part element="impl:getAdsNames" name="parameters">
 
       </wsdl:part>
 
@@ -114,6 +144,18 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    </wsdl:message>
 
    <wsdl:portType name="Main">
+
+      <wsdl:operation name="getAdsNames">
+
+         <wsdl:input message="impl:getAdsNamesRequest" name="getAdsNamesRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getAdsNamesResponse" name="getAdsNamesResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
 
       <wsdl:operation name="updateCategory">
 
@@ -168,6 +210,24 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <wsdl:binding name="MainSoapBinding" type="impl:Main">
 
       <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getAdsNames">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAdsNamesRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAdsNamesResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
 
       <wsdl:operation name="updateCategory">
 

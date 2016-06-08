@@ -13,21 +13,21 @@ public class YearBook {
 		this.ads = ads;
 	}
 
+	public YearBook(int id, String name) {
+		this.id = id;
+		this.name = name;
+	}
+	
+	public YearBook(int id) {
+		this.id = id;
+	}
+	
 	public ArrayList<Ad> getAds() {
 		return ads;
 	}
 
 	public void setAds(ArrayList<Ad> ads) {
 		this.ads = ads;
-	}
-
-	public YearBook(int id, String name) {
-		this.id = id;
-		this.name = name;
-	}
-	
-	public YearBook(String name) {
-		this.name = name;
 	}
 
 	public int getId() {

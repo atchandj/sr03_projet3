@@ -17,6 +17,11 @@ public class Ad {
 		this.categories = category;
 		this.addresses = addresses;
 	}
+	
+	public Ad(int yearBook, String name) {
+		this.yearBook = yearBook;
+		this.name = name;
+	}
 
 	public int getYearBook() {
 		return yearBook;

@@ -52,4 +52,13 @@ public class Main {
 			e.printStackTrace();
 		}
 	}
+	
+	public String getAdsNames(int yearBook){
+		try {
+			return this.yearBookDao.getAdsNames(yearBook);
+		} catch (DaoException e) {
+			e.printStackTrace();
+		}
+		return null;		
+	}
 }
