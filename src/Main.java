@@ -79,4 +79,12 @@ public class Main {
 		}
 		return null;	
 	}
+	
+	public void addAd(int yearBook, String adName, String phone, String street, String town, String postCode, String category){
+		try {
+			this.yearBookDao.addAd(yearBook, adName, phone, street, town, postCode, category);
+		} catch (DaoException e) {
+			e.printStackTrace();
+		}
+	}
 }

@@ -216,4 +216,39 @@ public class YearBookDaoImpl implements YearBookDao {
         }
         return jsonInString;
     }
+    
+    @Override
+    public void addAd(int yearBook, String adName, String phone, String street, String town, String postCode, String category) throws DaoException {  
+    	Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+        String query = "CALL addAd(?, ?, ?, ?, ?, ?, ?);";
+        String databaseErrorMessage = "Impossible de communiquer avec la base de données";
+        try{
+            connexion = daoFactory.getConnection();
+            preparedStatement = (PreparedStatement) connexion.prepareStatement(query);
+            preparedStatement.setInt(1, yearBook);
+            preparedStatement.setString(2, adName);
+            preparedStatement.setString(3, phone);
+            preparedStatement.setString(4, street);
+            preparedStatement.setString(5, town);
+            preparedStatement.setString(6, postCode);
+            preparedStatement.setString(7, category);
+            int result = preparedStatement.executeUpdate();
+            connexion.commit();
+            if(result == 0){
+            	throw new DaoException("Rien n'a été mis à jour.");
+            }
+        } catch (SQLException e) {
+            throw new DaoException(databaseErrorMessage + ": " + e.getMessage());
+        }
+        finally {
+            try {
+                if (connexion != null) {
+                    connexion.close();  
+                }
+            } catch (SQLException e) {
+                throw new DaoException(databaseErrorMessage + ": " + e.getMessage());
+            }
+        }
+    }
 }
