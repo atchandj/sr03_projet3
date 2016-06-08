@@ -49,7 +49,7 @@ où K est une clé et A un attribut n'appartenant pas à une clé). */
 -----------------------------------------------------------------------------------------------
 
 
-Adress(
+Address(
 	#id: INT,
 	street: VARCHAR(100),
 	town: VARCHAR(50),
@@ -63,13 +63,13 @@ F+ = {
 	(street, town, postCode) -> id;
 }
 
-/* La relation Adress est en 1NF car elle possède une clé et tous ses attributs sont atomiques.
-La relation Adress est en 2NF car elle est en 1NF et que tout attribut n'appartenant pas à une clé ne dépend 
+/* La relation Address est en 1NF car elle possède une clé et tous ses attributs sont atomiques.
+La relation Address est en 2NF car elle est en 1NF et que tout attribut n'appartenant pas à une clé ne dépend 
 pas seulement d'une partie d'une clé (ou encore que toutes les DF issues d'une clé sont élémentaires).
-La relation Adress est en 3NF car elle est en 2NF et que tout attribut n'appartenant pas à une clé ne dépend pas d'un
+La relation Address est en 3NF car elle est en 2NF et que tout attribut n'appartenant pas à une clé ne dépend pas d'un
 autre attribut n'appartenant pas à une clé (ou encore que toutes les DFE vers des attributs n'appartenant pas à une 
 clé, sont issues d'une clé).  
-La relation Adress est en BCNF car elle est en 3NF et que tout attribut n'appartenant pas à une clé n'est pas source 
+La relation Address est en BCNF car elle est en 3NF et que tout attribut n'appartenant pas à une clé n'est pas source 
 d'une DF vers une partie d'une clé (ou encore toutes les DFE, celles dans F+, ont la forme K -> A
 où K est une clé et A un attribut n'appartenant pas à une clé). */
 
@@ -80,14 +80,14 @@ Ad(
 	name: VARCHAR(50),
 	phone: VARCHAR(10),
 	category=>Category,
-	adress=>Adress
-) avec KEY(yearBook, name) et phone, category, adress NOT NULL
+	address=>Address
+) avec KEY(yearBook, name) et phone NOT NULL
 
 F+ = {
 	(yearBook, name) -> id;
 	(yearBook, name) -> phone;
 	(yearBook, name) -> category;
-	(yearBook, name) -> adress;
+	(yearBook, name) -> address;
 }
 
 /* La relation Ad est en 1NF car elle possède une clé et tous ses attributs sont atomiques.

@@ -61,4 +61,13 @@ public class Main {
 		}
 		return null;		
 	}
+	
+	public String getYearBook(int yearBook){
+		try {
+			return this.yearBookDao.getYearBook(yearBook);
+		} catch (DaoException e) {
+			e.printStackTrace();
+		}
+		return null;		
+	}
 }

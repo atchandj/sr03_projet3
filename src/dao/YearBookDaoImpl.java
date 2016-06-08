@@ -11,6 +11,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import beans.Ad;
+import beans.Address;
+import beans.Category;
 import beans.YearBook;
 
 public class YearBookDaoImpl implements YearBookDao {
@@ -55,13 +57,12 @@ public class YearBookDaoImpl implements YearBookDao {
         Connection connexion = null;
         PreparedStatement preparedStatement = null;
         ObjectMapper mapper = new ObjectMapper();
-        // Object to JSON in String
         String jsonInString = null;
         try{
             connexion = daoFactory.getConnection();
             preparedStatement = (PreparedStatement) connexion.prepareStatement("SELECT A.yearBook AS yearBook, A.name AS adName "
             		+ "FROM Ad A "
-            		+ "LEFT OUTER JOIN Adress Ad ON  A.adress = Ad.id "
+            		+ "LEFT OUTER JOIN Address Ad ON  A.address = Ad.id "
             		+ "LEFT OUTER JOIN Category C ON A.category = C.id "
             		+ "WHERE A.yearBook = ? "
             		+ "ORDER BY A.name;");
@@ -71,6 +72,70 @@ public class YearBookDaoImpl implements YearBookDao {
             	String adName = result.getString("adName");
 
             	Ad tmpAd = new Ad(yearBook, adName);                
+            	ads.add(tmpAd);
+            }
+            yearBookBean.setAds(ads);
+            jsonInString = mapper.writeValueAsString(yearBookBean);
+        } catch (SQLException e) {
+            throw new DaoException("Impossible de communiquer avec la base de données " + e.getMessage());
+        } catch (JsonProcessingException e) {
+        	throw new DaoException("Impossible de communiquer avec la base de données " + e.getMessage());
+		}
+        finally {
+            try {
+                if (connexion != null) {
+                    connexion.close();  
+                }
+            } catch (SQLException e) {
+                throw new DaoException("Impossible de communiquer avec la base de données");
+            }
+        }
+        return jsonInString;
+    }
+    
+    @Override
+	public String getYearBook(int yearBook) throws DaoException{
+    	YearBook yearBookBean = new YearBook(yearBook);
+    	ArrayList<Ad> ads = new ArrayList<Ad>();
+        Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+        ObjectMapper mapper = new ObjectMapper();        
+        String jsonInString = null;
+        try{
+            connexion = daoFactory.getConnection();
+            preparedStatement = (PreparedStatement) connexion.prepareStatement("SELECT A.yearBook AS yearBook, A.name AS adName, A.phone AS phone, Ad.id AS addressId, Ad.street AS street, Ad.town AS town, Ad.postCode AS postCode, C.id AS categoryId, C.name AS category "
+            		+ "FROM Ad A "
+            		+ "LEFT OUTER JOIN Address Ad ON  A.address = Ad.id "
+            		+ "LEFT OUTER JOIN Category C ON A.category = C.id "
+            		+ "WHERE A.yearBook = ? "
+            		+ "ORDER BY A.name;");
+            preparedStatement.setInt(1, yearBook);
+            ResultSet result = preparedStatement.executeQuery();
+            while (result.next()) {
+            	String adName = result.getString("adName");
+            	String phone = result.getString("phone");
+            	int addressId = result.getInt("addressId");
+            	String street = result.getString("street");
+            	String town = result.getString("town");
+            	String postCode = result.getString("postCode");
+            	int categoryId = result.getInt("categoryId");
+            	String category = result.getString("category");    	
+            	
+            	Ad tmpAd = new Ad(yearBook, adName, phone); 
+            	Category tmpCategory = null;
+            	Address tmpAdress = null;
+            	if(street != null){
+            		tmpAdress = new Address(addressId, street, town, postCode);
+            		tmpAd.setAddress(tmpAdress);
+            	}else{
+            		tmpAd.setAddress(null);
+            	}
+            	if(category != null){
+            		tmpCategory = new Category(categoryId, category);
+            		tmpAd.setCategory(tmpCategory);
+            	}else{
+            		tmpAd.setCategory(null);
+            	}
             	ads.add(tmpAd);
             }
             yearBookBean.setAds(ads);

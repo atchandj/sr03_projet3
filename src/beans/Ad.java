@@ -1,26 +1,32 @@
 package beans;
 
-import java.util.ArrayList;
-
 
 public class Ad {
 	private int yearBook;
 	private String name;
 	private String phone;
-	private ArrayList<Category> categories;
-	private ArrayList<Address> addresses;
+	private Category category;
+	private Address address;
 	
-	public Ad(int yearBook, String name, String phone, ArrayList<Category> category, ArrayList<Address> addresses) {
+	public Ad(int yearBook, String name, String phone, Category category, Address address) {
 		this.yearBook = yearBook;
 		this.name = name;
 		this.phone = phone;
-		this.categories = category;
-		this.addresses = addresses;
+		this.category = category;
+		this.address = address;
 	}
 	
 	public Ad(int yearBook, String name) {
 		this.yearBook = yearBook;
 		this.name = name;
+	}
+
+	public Ad(int yearBook, String name, String phone) {
+		this.yearBook = yearBook;
+		this.name = name;
+		this.phone = phone;
+		this.category = null;
+		this.address = null;
 	}
 
 	public int getYearBook() {
@@ -47,21 +53,20 @@ public class Ad {
 		this.phone = phone;
 	}
 
-	public ArrayList<Category> getCategories() {
-		return categories;
+	public Category getCategory() {
+		return category;
 	}
 
-	public void setCategories(ArrayList<Category> categories) {
-		this.categories = categories;
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 
-	public ArrayList<Address> getAddresses() {
-		return addresses;
+	public Address getAddress() {
+		return address;
 	}
 
-	public void setAddresses(ArrayList<Address> addresses) {
-		this.addresses = addresses;
+	public void setAddress(Address address) {
+		this.address = address;
 	}
-
 
 }
