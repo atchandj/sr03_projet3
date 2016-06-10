@@ -3,6 +3,7 @@ package dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.regex.Pattern;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -10,8 +11,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 
-import beans.Ad;
-import beans.YearBook;
 
 public class AdDaoImpl implements AdDao {
 	private DaoFactory daoFactory;
@@ -27,7 +26,7 @@ public class AdDaoImpl implements AdDao {
         try{
             connexion = daoFactory.getConnection();
             preparedStatement = (PreparedStatement) connexion.prepareStatement("DELETE FROM Category WHERE name = ?;");
-            preparedStatement.setString(1, category);
+            preparedStatement.setString(1, category.toLowerCase(Locale.FRENCH));
             int result = preparedStatement.executeUpdate();
             connexion.commit();
             if(result == 0){
@@ -54,8 +53,8 @@ public class AdDaoImpl implements AdDao {
         try{
             connexion = daoFactory.getConnection();
             preparedStatement = (PreparedStatement) connexion.prepareStatement("UPDATE Category SET name=? WHERE name =?;");
-            preparedStatement.setString(1, newCategoryName);
-            preparedStatement.setString(2, oldCategoryName);
+            preparedStatement.setString(1, newCategoryName.toLowerCase(Locale.FRENCH));
+            preparedStatement.setString(2, oldCategoryName.toLowerCase(Locale.FRENCH));
             int result = preparedStatement.executeUpdate();
             connexion.commit();
             if(result == 0){
@@ -78,14 +77,11 @@ public class AdDaoImpl implements AdDao {
     @Override
     public void addCategory(String categoryName) throws DaoException {
     	Connection connexion = null;
-        PreparedStatement preparedStatement = null;
-        if(!Pattern.matches("^[a-zA-Z]+$", categoryName)){
-        	throw new DaoException("Veuillez saisir des données cohérentes.");
-        }  
+        PreparedStatement preparedStatement = null; 
         try{
             connexion = daoFactory.getConnection();
             preparedStatement = (PreparedStatement) connexion.prepareStatement("INSERT INTO Category(name) VALUES(?);");
-            preparedStatement.setString(1, categoryName);
+            preparedStatement.setString(1, categoryName.toLowerCase(Locale.FRENCH));
             int result = preparedStatement.executeUpdate();
             connexion.commit();
             if(result == 0){
@@ -122,7 +118,7 @@ public class AdDaoImpl implements AdDao {
             ResultSet result = preparedStatement.executeQuery();
             while (result.next()) {
             	categoryName = result.getString("name");             
-            	categoriesNames.add(categoryName);
+            	categoriesNames.add(categoryName.toLowerCase(Locale.FRENCH));
             }
             jsonInString = mapper.writeValueAsString(categoriesNames);
         } catch (SQLException e) {
@@ -159,7 +155,7 @@ public class AdDaoImpl implements AdDao {
             ResultSet result = preparedStatement.executeQuery();
             while (result.next()) {
             	townName = result.getString("town");             
-            	townsNames.add(townName);
+            	townsNames.add(townName.toLowerCase(Locale.FRENCH));
             }
             jsonInString = mapper.writeValueAsString(townsNames);
         } catch (SQLException e) {
@@ -196,7 +192,7 @@ public class AdDaoImpl implements AdDao {
             ResultSet result = preparedStatement.executeQuery();
             while (result.next()) {
             	streetName = result.getString("street");             
-            	streetsNames.add(streetName);
+            	streetsNames.add(streetName.toLowerCase(Locale.FRENCH));
             }
             jsonInString = mapper.writeValueAsString(streetsNames);
         } catch (SQLException e) {

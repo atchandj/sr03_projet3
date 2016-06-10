@@ -75,3 +75,19 @@ BEGIN
 	VALUES(yearBook, adName, phone, categoryId, addressId);
 END//
 DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE clean()
+BEGIN
+	DELETE FROM Category
+	WHERE id NOT IN (
+		SELECT category 
+		FROM Ad
+	);
+	DELETE FROM Address
+	WHERE id NOT IN (
+		SELECT address 
+		FROM Ad
+	);
+END//
+DELIMITER ;
