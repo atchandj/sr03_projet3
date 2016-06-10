@@ -90,4 +90,36 @@ public class Main {
 			throw e;
 		}
 	}
+	
+	public String getCategoriesNames(int yearBook) throws DaoException{
+		try {
+			return this.adDao.getCategoriesNames(yearBook);
+		} catch (DaoException e) {
+			throw e;
+		}
+	}
+	
+	public String getPostCodes(int yearBook) throws DaoException{
+		try {
+			return this.adDao.getPostCodes(yearBook);
+		} catch (DaoException e) {
+			throw e;
+		}
+	}
+	
+	public String getStreetsNames(int yearBook) throws DaoException{
+		try {
+			return this.adDao.getStreetsNames(yearBook);
+		} catch (DaoException e) {
+			throw e;
+		}
+	}
+	
+	public String getTownsNames(int yearBook) throws DaoException{
+		try {
+			return this.adDao.getTownsNames(yearBook);
+		} catch (DaoException e) {
+			throw e;
+		}
+	}
 }
