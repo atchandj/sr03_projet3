@@ -36,7 +36,6 @@ public class Main {
 	}
 	
 	public void addCategory(String categoryName) throws DaoException{
-		System.out.println("Bonjour");
 		try {
 			this.adDao.addCategory(categoryName);
 		} catch (DaoException e) {
@@ -45,7 +44,6 @@ public class Main {
 	}
 	
 	public void dropAd(int yearBook, String adName) throws DaoException{
-		System.out.println("Bonjour");
 		try {
 			this.yearBookDao.dropAd(yearBook, adName);
 		} catch (DaoException e) {
