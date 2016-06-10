@@ -75,20 +75,3 @@ BEGIN
 	VALUES(yearBook, adName, phone, categoryId, addressId);
 END//
 DELIMITER ;
-
-DELIMITER //
-CREATE PROCEDURE modifyAd(IN yearBook INT, IN oldAdName VARCHAR(50), IN oldStreet VARCHAR(100), IN oldTown VARCHAR(50), IN oldPostCode VARCHAR(5), IN oldCategory VARCHAR(50), IN newAdName VARCHAR(50), IN newPhone VARCHAR(10), IN newStreet VARCHAR(100), IN newTown VARCHAR(50), IN newPostCode VARCHAR(5), IN newCategory VARCHAR(50))
-BEGIN
-	START TRANSACTION;
-	UPDATE Category
-	SET name = newCategory
-	WHERE name = oldCategory;
-	UPDATE Address
-	SET street = newStreet, town = newTown, postCode = newPostCode
-	WHERE street = oldStreet AND town = oldTown AND postCode = oldPostCode;
-	UPDATE Ad
-	SET name = newAdName, phone = newPhone
-	WHERE yearBook = yearBook AND name = oldAdName;
-    COMMIT;
-END//
-DELIMITER ;

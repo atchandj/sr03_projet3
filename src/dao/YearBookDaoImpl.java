@@ -255,27 +255,44 @@ public class YearBookDaoImpl implements YearBookDao {
     @Override
     public void modifyAd(int yearBook, String oldAdName, String oldStreet, String oldTown, String oldPostCode, String oldCategory, String newAdName, String newPhone, String newStreet, String newTown, String newPostCode, String newCategory) throws DaoException {  
     	Connection connexion = null;
-        PreparedStatement preparedStatement = null;
-        String query = "CALL modifyAd(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        PreparedStatement preparedStatement1 = null;
+        PreparedStatement preparedStatement2 = null;
+        PreparedStatement preparedStatement3 = null;
+        String query1 = "UPDATE Category "
+        		+ "SET name = ? "
+        		+ "WHERE name = ?;";
+        String query2 = "UPDATE Address "
+        		+ "SET street = ?, town = ?, postCode = ? "
+        		+ "WHERE street = ? AND town = ? AND postCode = ?;";
+        String query3 = "UPDATE Ad "
+        		+ "SET name = ?, phone = ? "
+        		+ "WHERE yearBook = ? AND name = ?;";
         String databaseErrorMessage = "Impossible de communiquer avec la base de données";
         try{
             connexion = daoFactory.getConnection();
-            preparedStatement = (PreparedStatement) connexion.prepareStatement(query);
-            preparedStatement.setInt(1, yearBook);
-            preparedStatement.setString(2, oldAdName);
-            preparedStatement.setString(3, oldStreet);
-            preparedStatement.setString(4, oldTown);
-            preparedStatement.setString(5, oldPostCode);
-            preparedStatement.setString(6, oldCategory);
-            preparedStatement.setString(7, newAdName);
-            preparedStatement.setString(8, newPhone);
-            preparedStatement.setString(9, newStreet);
-            preparedStatement.setString(10, newTown);
-            preparedStatement.setString(11, newPostCode);
-            preparedStatement.setString(12, newCategory);
-            int result = preparedStatement.executeUpdate();
+            preparedStatement1 = (PreparedStatement) connexion.prepareStatement(query1);
+            preparedStatement1.setString(1, newCategory);
+            preparedStatement1.setString(2, oldCategory);
+            int result1 = preparedStatement1.executeUpdate();
+            
+            preparedStatement2 = (PreparedStatement) connexion.prepareStatement(query2);
+            preparedStatement2.setString(1, newStreet);
+            preparedStatement2.setString(2, newTown);
+            preparedStatement2.setString(3, newPostCode);            
+            preparedStatement2.setString(4, oldStreet);
+            preparedStatement2.setString(5, oldTown);
+            preparedStatement2.setString(6, oldPostCode);            
+            int result2 = preparedStatement2.executeUpdate();
+            
+            preparedStatement3 = (PreparedStatement) connexion.prepareStatement(query3);
+            preparedStatement3.setString(1, newAdName);
+            preparedStatement3.setString(2, newPhone);
+            preparedStatement3.setInt(3, yearBook);
+            preparedStatement3.setString(4, oldAdName);
+            int result3 = preparedStatement3.executeUpdate();
+            
             connexion.commit();
-            if(result == 0){
+            if( (result1 == 0) && (result2 == 0) && (result3 == 0) ){
             	throw new DaoException("Rien n'a été mis à jour.");
             }
         } catch (SQLException e) {

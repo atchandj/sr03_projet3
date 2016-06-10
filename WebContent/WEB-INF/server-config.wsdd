@@ -7,8 +7,8 @@
   <ns1:parameter name="dotNetSoapEncFix" value="true"/>
   <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
   <ns1:parameter name="sendXMLDeclaration" value="true"/>
-  <ns1:parameter name="sendXsiTypes" value="true"/>
   <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <ns1:parameter name="sendXsiTypes" value="true"/>
   <ns1:requestFlow>
    <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
     <ns1:parameter name="scope" value="session"/>
@@ -36,58 +36,68 @@
   <ns2:operation name="updateCategory" qname="ns1:updateCategory" soapAction="" xmlns:ns1="http://DefaultNamespace" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
    <ns2:parameter qname="ns1:oldCategoryName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
    <ns2:parameter qname="ns1:newCategoryName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns3:fault class="dao.DaoException" qname="ns1:fault" type="ns2:DaoException" xmlns:ns2="http://dao" xmlns:ns3="http://xml.apache.org/axis/wsdd/"/>
   </ns2:operation>
-  <ns1:operation name="addCategory" qname="ns2:addCategory" soapAction="" xmlns:ns2="http://DefaultNamespace">
-   <ns1:parameter qname="ns2:categoryName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="addCategory" qname="ns3:addCategory" soapAction="" xmlns:ns3="http://DefaultNamespace">
+   <ns1:parameter qname="ns3:categoryName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:fault class="dao.DaoException" qname="ns3:fault" type="ns4:DaoException" xmlns:ns4="http://dao"/>
   </ns1:operation>
-  <ns1:operation name="dropAd" qname="ns3:dropAd" soapAction="" xmlns:ns3="http://DefaultNamespace">
-   <ns1:parameter qname="ns3:yearBook" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-   <ns1:parameter qname="ns3:adName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-  </ns1:operation>
-  <ns1:operation name="getAdsNames" qname="ns4:getAdsNames" returnQName="ns4:getAdsNamesReturn" returnType="xsd:string" soapAction="" xmlns:ns4="http://DefaultNamespace" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns4:yearBook" type="xsd:int"/>
-  </ns1:operation>
-  <ns1:operation name="modifyAd" qname="ns5:modifyAd" soapAction="" xmlns:ns5="http://DefaultNamespace">
-   <ns1:parameter qname="ns5:yearBook" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-   <ns1:parameter qname="ns5:oldAdName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-   <ns1:parameter qname="ns5:oldStreet" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-   <ns1:parameter qname="ns5:oldTown" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-   <ns1:parameter qname="ns5:oldPostCode" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-   <ns1:parameter qname="ns5:oldCategory" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-   <ns1:parameter qname="ns5:newAdName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-   <ns1:parameter qname="ns5:newPhone" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-   <ns1:parameter qname="ns5:newStreet" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-   <ns1:parameter qname="ns5:newTown" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-   <ns1:parameter qname="ns5:newPostCode" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-   <ns1:parameter qname="ns5:newCategory" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-  </ns1:operation>
-  <ns1:operation name="dropCategory" qname="ns6:dropCategory" soapAction="" xmlns:ns6="http://DefaultNamespace">
-   <ns1:parameter qname="ns6:category" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="getAdsNames" qname="ns5:getAdsNames" returnQName="ns5:getAdsNamesReturn" returnType="xsd:string" soapAction="" xmlns:ns5="http://DefaultNamespace" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns5:yearBook" type="xsd:int"/>
+   <ns1:fault class="dao.DaoException" qname="ns5:fault" type="ns6:DaoException" xmlns:ns6="http://dao"/>
   </ns1:operation>
   <ns1:operation name="getYearBook" qname="ns7:getYearBook" returnQName="ns7:getYearBookReturn" returnType="xsd:string" soapAction="" xmlns:ns7="http://DefaultNamespace" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
    <ns1:parameter qname="ns7:yearBook" type="xsd:int"/>
+   <ns1:fault class="dao.DaoException" qname="ns7:fault" type="ns8:DaoException" xmlns:ns8="http://dao"/>
   </ns1:operation>
-  <ns1:operation name="getAd" qname="ns8:getAd" returnQName="ns8:getAdReturn" returnType="xsd:string" soapAction="" xmlns:ns8="http://DefaultNamespace" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns8:yearBook" type="xsd:int"/>
-   <ns1:parameter qname="ns8:adName" type="xsd:string"/>
+  <ns1:operation name="getAd" qname="ns9:getAd" returnQName="ns9:getAdReturn" returnType="xsd:string" soapAction="" xmlns:ns9="http://DefaultNamespace" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns9:yearBook" type="xsd:int"/>
+   <ns1:parameter qname="ns9:adName" type="xsd:string"/>
+   <ns1:fault class="dao.DaoException" qname="ns9:fault" type="ns10:DaoException" xmlns:ns10="http://dao"/>
   </ns1:operation>
-  <ns1:operation name="addAd" qname="ns9:addAd" soapAction="" xmlns:ns9="http://DefaultNamespace">
-   <ns1:parameter qname="ns9:yearBook" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-   <ns1:parameter qname="ns9:adName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-   <ns1:parameter qname="ns9:phone" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-   <ns1:parameter qname="ns9:street" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-   <ns1:parameter qname="ns9:town" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-   <ns1:parameter qname="ns9:postCode" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-   <ns1:parameter qname="ns9:category" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="addAd" qname="ns11:addAd" soapAction="" xmlns:ns11="http://DefaultNamespace">
+   <ns1:parameter qname="ns11:yearBook" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns11:adName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns11:phone" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns11:street" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns11:town" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns11:postCode" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns11:category" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:fault class="dao.DaoException" qname="ns11:fault" type="ns12:DaoException" xmlns:ns12="http://dao"/>
   </ns1:operation>
-  <ns1:parameter name="allowedMethods" value="addAd getAd getYearBook updateCategory dropCategory dropAd modifyAd addCategory getAdsNames"/>
+  <ns1:operation name="modifyAd" qname="ns13:modifyAd" soapAction="" xmlns:ns13="http://DefaultNamespace">
+   <ns1:parameter qname="ns13:yearBook" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns13:oldAdName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns13:oldStreet" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns13:oldTown" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns13:oldPostCode" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns13:oldCategory" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns13:newAdName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns13:newPhone" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns13:newStreet" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns13:newTown" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns13:newPostCode" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns13:newCategory" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:fault class="dao.DaoException" qname="ns13:fault" type="ns14:DaoException" xmlns:ns14="http://dao"/>
+  </ns1:operation>
+  <ns1:operation name="dropCategory" qname="ns15:dropCategory" soapAction="" xmlns:ns15="http://DefaultNamespace">
+   <ns1:parameter qname="ns15:category" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:fault class="dao.DaoException" qname="ns15:fault" type="ns16:DaoException" xmlns:ns16="http://dao"/>
+  </ns1:operation>
+  <ns1:operation name="dropAd" qname="ns17:dropAd" soapAction="" xmlns:ns17="http://DefaultNamespace">
+   <ns1:parameter qname="ns17:yearBook" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns17:adName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:fault class="dao.DaoException" qname="ns17:fault" type="ns18:DaoException" xmlns:ns18="http://dao"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="addAd getAd getYearBook updateCategory dropCategory modifyAd dropAd addCategory getAdsNames"/>
   <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="wsdlPortType" value="Main"/>
   <ns1:parameter name="className" value="Main"/>
   <ns1:parameter name="wsdlServicePort" value="Main"/>
-  <ns1:parameter name="schemaQualified" value="http://DefaultNamespace"/>
+  <ns1:parameter name="schemaQualified" value="http://dao,http://DefaultNamespace"/>
   <ns1:parameter name="wsdlTargetNamespace" value="http://DefaultNamespace"/>
   <ns1:parameter name="wsdlServiceElement" value="MainService"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns19:DaoException" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:dao.DaoException" xmlns:ns19="http://dao"/>
  </ns1:service>
  <ns1:transport name="http">
   <ns1:requestFlow>

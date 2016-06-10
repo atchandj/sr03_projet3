@@ -19,80 +19,77 @@ public class Main {
 		}        
     }  
     
-	public void dropCategory(String category){
+	public void dropCategory(String category) throws DaoException{
 		try {
 			this.adDao.dropCategory(category);
 		} catch (DaoException e) {
-			e.printStackTrace();
+			throw e;
 		} 
 	}
 
-	public void updateCategory(String oldCategoryName, String newCategoryName) {
+	public void updateCategory(String oldCategoryName, String newCategoryName) throws DaoException {
 		try {
 			this.adDao.updateCategory(oldCategoryName, newCategoryName);
 		} catch (DaoException e) {
-			e.printStackTrace();
+			throw e;
 		} 
 	}
 	
-	public void addCategory(String categoryName){
+	public void addCategory(String categoryName) throws DaoException{
 		System.out.println("Bonjour");
 		try {
 			this.adDao.addCategory(categoryName);
 		} catch (DaoException e) {
-			e.printStackTrace();
+			throw e;
 		}
 	}
 	
-	public void dropAd(int yearBook, String adName){
+	public void dropAd(int yearBook, String adName) throws DaoException{
 		System.out.println("Bonjour");
 		try {
 			this.yearBookDao.dropAd(yearBook, adName);
 		} catch (DaoException e) {
-			e.printStackTrace();
+			throw e;
 		}
 	}
 	
-	public String getAdsNames(int yearBook){
+	public String getAdsNames(int yearBook) throws DaoException{
 		try {
 			return this.yearBookDao.getAdsNames(yearBook);
 		} catch (DaoException e) {
-			e.printStackTrace();
-		}
-		return null;		
+			throw e;
+		}		
 	}
 	
-	public String getYearBook(int yearBook){
+	public String getYearBook(int yearBook) throws DaoException{
 		try {
 			return this.yearBookDao.getYearBook(yearBook);
 		} catch (DaoException e) {
-			e.printStackTrace();
+			throw e;
 		}
-		return null;		
 	}
 	
-	public String getAd(int yearBook, String adName){
+	public String getAd(int yearBook, String adName) throws DaoException{
 		try {
 			return this.yearBookDao.getAd(yearBook, adName);
 		} catch (DaoException e) {
-			e.printStackTrace();
+			throw e;
 		}
-		return null;	
 	}
 	
-	public void addAd(int yearBook, String adName, String phone, String street, String town, String postCode, String category){
+	public void addAd(int yearBook, String adName, String phone, String street, String town, String postCode, String category) throws DaoException{
 		try {
 			this.yearBookDao.addAd(yearBook, adName, phone, street, town, postCode, category);
 		} catch (DaoException e) {
-			e.printStackTrace();
+			throw e;
 		}
 	}
 	
-	public void modifyAd(int yearBook, String oldAdName, String oldStreet, String oldTown, String oldPostCode, String oldCategory, String newAdName, String newPhone, String newStreet, String newTown, String newPostCode, String newCategory){
+	public void modifyAd(int yearBook, String oldAdName, String oldStreet, String oldTown, String oldPostCode, String oldCategory, String newAdName, String newPhone, String newStreet, String newTown, String newPostCode, String newCategory) throws DaoException{
 		try {
 			this.yearBookDao.modifyAd(yearBook, oldAdName, oldStreet, oldTown, oldPostCode, oldCategory, newAdName, newPhone, newStreet, newTown, newPostCode, newCategory);
 		} catch (DaoException e) {
-			e.printStackTrace();
+			throw e;
 		}
 	}
 }

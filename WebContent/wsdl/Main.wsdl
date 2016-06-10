@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<wsdl:definitions targetNamespace="http://DefaultNamespace" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://DefaultNamespace" xmlns:intf="http://DefaultNamespace" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<wsdl:definitions targetNamespace="http://DefaultNamespace" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://DefaultNamespace" xmlns:intf="http://DefaultNamespace" xmlns:tns1="http://dao" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 <!--WSDL created by Apache Axis version: 1.4
 Built on Apr 22, 2006 (06:55:48 PDT)-->
  <wsdl:types>
   <schema elementFormDefault="qualified" targetNamespace="http://DefaultNamespace" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://dao"/>
    <element name="updateCategory">
     <complexType>
      <sequence>
@@ -15,6 +16,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <element name="updateCategoryResponse">
     <complexType/>
    </element>
+   <element name="fault" type="tns1:DaoException"/>
    <element name="addCategory">
     <complexType>
      <sequence>
@@ -23,17 +25,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
     </complexType>
    </element>
    <element name="addCategoryResponse">
-    <complexType/>
-   </element>
-   <element name="dropAd">
-    <complexType>
-     <sequence>
-      <element name="yearBook" type="xsd:int"/>
-      <element name="adName" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="dropAdResponse">
     <complexType/>
    </element>
    <element name="getAdsNames">
@@ -49,37 +40,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
       <element name="getAdsNamesReturn" type="xsd:string"/>
      </sequence>
     </complexType>
-   </element>
-   <element name="modifyAd">
-    <complexType>
-     <sequence>
-      <element name="yearBook" type="xsd:int"/>
-      <element name="oldAdName" type="xsd:string"/>
-      <element name="oldStreet" type="xsd:string"/>
-      <element name="oldTown" type="xsd:string"/>
-      <element name="oldPostCode" type="xsd:string"/>
-      <element name="oldCategory" type="xsd:string"/>
-      <element name="newAdName" type="xsd:string"/>
-      <element name="newPhone" type="xsd:string"/>
-      <element name="newStreet" type="xsd:string"/>
-      <element name="newTown" type="xsd:string"/>
-      <element name="newPostCode" type="xsd:string"/>
-      <element name="newCategory" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="modifyAdResponse">
-    <complexType/>
-   </element>
-   <element name="dropCategory">
-    <complexType>
-     <sequence>
-      <element name="category" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="dropCategoryResponse">
-    <complexType/>
    </element>
    <element name="getYearBook">
     <complexType>
@@ -126,6 +86,53 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <element name="addAdResponse">
     <complexType/>
    </element>
+   <element name="modifyAd">
+    <complexType>
+     <sequence>
+      <element name="yearBook" type="xsd:int"/>
+      <element name="oldAdName" type="xsd:string"/>
+      <element name="oldStreet" type="xsd:string"/>
+      <element name="oldTown" type="xsd:string"/>
+      <element name="oldPostCode" type="xsd:string"/>
+      <element name="oldCategory" type="xsd:string"/>
+      <element name="newAdName" type="xsd:string"/>
+      <element name="newPhone" type="xsd:string"/>
+      <element name="newStreet" type="xsd:string"/>
+      <element name="newTown" type="xsd:string"/>
+      <element name="newPostCode" type="xsd:string"/>
+      <element name="newCategory" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="modifyAdResponse">
+    <complexType/>
+   </element>
+   <element name="dropCategory">
+    <complexType>
+     <sequence>
+      <element name="category" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="dropCategoryResponse">
+    <complexType/>
+   </element>
+   <element name="dropAd">
+    <complexType>
+     <sequence>
+      <element name="yearBook" type="xsd:int"/>
+      <element name="adName" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="dropAdResponse">
+    <complexType/>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://dao" xmlns="http://www.w3.org/2001/XMLSchema">
+   <complexType name="DaoException">
+    <sequence/>
+   </complexType>
   </schema>
  </wsdl:types>
 
@@ -169,6 +176,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="modifyAdResponse">
+
+      <wsdl:part element="impl:modifyAdResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="dropAdRequest">
 
       <wsdl:part element="impl:dropAd" name="parameters">
@@ -177,9 +192,9 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="modifyAdResponse">
+   <wsdl:message name="DaoException">
 
-      <wsdl:part element="impl:modifyAdResponse" name="parameters">
+      <wsdl:part element="impl:fault" name="fault">
 
       </wsdl:part>
 
@@ -285,6 +300,10 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
        </wsdl:output>
 
+         <wsdl:fault message="impl:DaoException" name="DaoException">
+
+       </wsdl:fault>
+
       </wsdl:operation>
 
       <wsdl:operation name="addCategory">
@@ -297,17 +316,9 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
        </wsdl:output>
 
-      </wsdl:operation>
+         <wsdl:fault message="impl:DaoException" name="DaoException">
 
-      <wsdl:operation name="dropAd">
-
-         <wsdl:input message="impl:dropAdRequest" name="dropAdRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:dropAdResponse" name="dropAdResponse">
-
-       </wsdl:output>
+       </wsdl:fault>
 
       </wsdl:operation>
 
@@ -321,29 +332,9 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
        </wsdl:output>
 
-      </wsdl:operation>
+         <wsdl:fault message="impl:DaoException" name="DaoException">
 
-      <wsdl:operation name="modifyAd">
-
-         <wsdl:input message="impl:modifyAdRequest" name="modifyAdRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:modifyAdResponse" name="modifyAdResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="dropCategory">
-
-         <wsdl:input message="impl:dropCategoryRequest" name="dropCategoryRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:dropCategoryResponse" name="dropCategoryResponse">
-
-       </wsdl:output>
+       </wsdl:fault>
 
       </wsdl:operation>
 
@@ -357,6 +348,10 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
        </wsdl:output>
 
+         <wsdl:fault message="impl:DaoException" name="DaoException">
+
+       </wsdl:fault>
+
       </wsdl:operation>
 
       <wsdl:operation name="getAd">
@@ -369,6 +364,10 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
        </wsdl:output>
 
+         <wsdl:fault message="impl:DaoException" name="DaoException">
+
+       </wsdl:fault>
+
       </wsdl:operation>
 
       <wsdl:operation name="addAd">
@@ -380,6 +379,58 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          <wsdl:output message="impl:addAdResponse" name="addAdResponse">
 
        </wsdl:output>
+
+         <wsdl:fault message="impl:DaoException" name="DaoException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modifyAd">
+
+         <wsdl:input message="impl:modifyAdRequest" name="modifyAdRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:modifyAdResponse" name="modifyAdResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:DaoException" name="DaoException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="dropCategory">
+
+         <wsdl:input message="impl:dropCategoryRequest" name="dropCategoryRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:dropCategoryResponse" name="dropCategoryResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:DaoException" name="DaoException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="dropAd">
+
+         <wsdl:input message="impl:dropAdRequest" name="dropAdRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:dropAdResponse" name="dropAdResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:DaoException" name="DaoException">
+
+       </wsdl:fault>
 
       </wsdl:operation>
 
@@ -405,6 +456,12 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
          </wsdl:output>
 
+         <wsdl:fault name="DaoException">
+
+            <wsdlsoap:fault name="DaoException" use="literal"/>
+
+         </wsdl:fault>
+
       </wsdl:operation>
 
       <wsdl:operation name="addCategory">
@@ -423,23 +480,11 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
          </wsdl:output>
 
-      </wsdl:operation>
+         <wsdl:fault name="DaoException">
 
-      <wsdl:operation name="dropAd">
+            <wsdlsoap:fault name="DaoException" use="literal"/>
 
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="dropAdRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="dropAdResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
+         </wsdl:fault>
 
       </wsdl:operation>
 
@@ -459,41 +504,11 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
          </wsdl:output>
 
-      </wsdl:operation>
+         <wsdl:fault name="DaoException">
 
-      <wsdl:operation name="modifyAd">
+            <wsdlsoap:fault name="DaoException" use="literal"/>
 
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="modifyAdRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="modifyAdResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="dropCategory">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="dropCategoryRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="dropCategoryResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
+         </wsdl:fault>
 
       </wsdl:operation>
 
@@ -513,6 +528,12 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
          </wsdl:output>
 
+         <wsdl:fault name="DaoException">
+
+            <wsdlsoap:fault name="DaoException" use="literal"/>
+
+         </wsdl:fault>
+
       </wsdl:operation>
 
       <wsdl:operation name="getAd">
@@ -531,6 +552,12 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
          </wsdl:output>
 
+         <wsdl:fault name="DaoException">
+
+            <wsdlsoap:fault name="DaoException" use="literal"/>
+
+         </wsdl:fault>
+
       </wsdl:operation>
 
       <wsdl:operation name="addAd">
@@ -548,6 +575,84 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
             <wsdlsoap:body use="literal"/>
 
          </wsdl:output>
+
+         <wsdl:fault name="DaoException">
+
+            <wsdlsoap:fault name="DaoException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modifyAd">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="modifyAdRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="modifyAdResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="DaoException">
+
+            <wsdlsoap:fault name="DaoException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="dropCategory">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="dropCategoryRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="dropCategoryResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="DaoException">
+
+            <wsdlsoap:fault name="DaoException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="dropAd">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="dropAdRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="dropAdResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="DaoException">
+
+            <wsdlsoap:fault name="DaoException" use="literal"/>
+
+         </wsdl:fault>
 
       </wsdl:operation>
 
