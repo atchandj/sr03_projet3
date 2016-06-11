@@ -343,8 +343,108 @@ public class YearBookDaoImpl implements YearBookDao {
                ResultSet result = preparedStatement.executeQuery();
                while (result.next()) {
                	String adName = result.getString("adName");
+               	String phone = result.getString("phone");
 
-               	Ad tmpAd = new Ad(yearBook, adName.toLowerCase(Locale.FRENCH));                
+               	Ad tmpAd = new Ad(yearBook, adName.toLowerCase(Locale.FRENCH));
+               	tmpAd.setPhone(phone);
+               	//tmpAd.setCategory(new Category(result.getInt("categoryId"), result.getString("category")));
+               	//tmpAd.setAddress(new Address(result.getString("street"), result.getString("town"), result.getString("postCode")));
+               	ads.add(tmpAd);
+               }
+               yearBookBean.setAds(ads);
+               jsonInString = mapper.writeValueAsString(yearBookBean);
+           } catch (SQLException e) {
+               throw new DaoException("Impossible de communiquer avec la base de données " + e.getMessage());
+           } catch (JsonProcessingException e) {
+           	throw new DaoException("Impossible de communiquer avec la base de données " + e.getMessage());
+   		}
+           finally {
+               try {
+                   if (connexion != null) {
+                       connexion.close();  
+                   }
+               } catch (SQLException e) {
+                   throw new DaoException("Impossible de communiquer avec la base de données");
+               }
+           }
+           return jsonInString;
+       }
+    
+    @Override
+   	public String getAdsByCategory(int yearBook, String category) throws DaoException{
+       	YearBook yearBookBean = new YearBook(yearBook);
+       	ArrayList<Ad> ads = new ArrayList<Ad>();
+           Connection connexion = null;
+           PreparedStatement preparedStatement = null;
+           ObjectMapper mapper = new ObjectMapper();
+           String jsonInString = null;
+           try{
+               connexion = daoFactory.getConnection();
+               preparedStatement = (PreparedStatement) connexion.prepareStatement(
+            		   "SELECT A.yearBook AS yearBook, A.name AS adName, A.phone AS phone, Ad.id AS addressId, Ad.street AS street, Ad.town AS town, Ad.postCode AS postCode, C.id AS categoryId, C.name AS category "
+            		   + "FROM Ad A "
+            		   + "LEFT OUTER JOIN Address Ad ON  A.address = Ad.id "
+            		   + "LEFT OUTER JOIN Category C ON A.category = C.id "
+            		   + "WHERE A.yearBook = ? AND C.name  like ? ;");
+               preparedStatement.setInt(1, yearBook);
+               preparedStatement.setString(2, '%' + category + '%');;
+               ResultSet result = preparedStatement.executeQuery();
+               while (result.next()) {
+               	String adName = result.getString("adName");
+               	String phone = result.getString("phone");
+
+               	Ad tmpAd = new Ad(yearBook, adName.toLowerCase(Locale.FRENCH));
+               	tmpAd.setPhone(phone);
+               	//tmpAd.setCategory(new Category(result.getInt("categoryId"), result.getString("category")));
+               	//tmpAd.setAddress(new Address(result.getString("street"), result.getString("town"), result.getString("postCode")));
+               	ads.add(tmpAd);
+               }
+               yearBookBean.setAds(ads);
+               jsonInString = mapper.writeValueAsString(yearBookBean);
+           } catch (SQLException e) {
+               throw new DaoException("Impossible de communiquer avec la base de données " + e.getMessage());
+           } catch (JsonProcessingException e) {
+           	throw new DaoException("Impossible de communiquer avec la base de données " + e.getMessage());
+   		}
+           finally {
+               try {
+                   if (connexion != null) {
+                       connexion.close();  
+                   }
+               } catch (SQLException e) {
+                   throw new DaoException("Impossible de communiquer avec la base de données");
+               }
+           }
+           return jsonInString;
+       }
+    
+    @Override
+   	public String getAdsByName(int yearBook, String name) throws DaoException{
+       	YearBook yearBookBean = new YearBook(yearBook);
+       	ArrayList<Ad> ads = new ArrayList<Ad>();
+           Connection connexion = null;
+           PreparedStatement preparedStatement = null;
+           ObjectMapper mapper = new ObjectMapper();
+           String jsonInString = null;
+           try{
+               connexion = daoFactory.getConnection();
+               preparedStatement = (PreparedStatement) connexion.prepareStatement(
+            		   "SELECT A.yearBook AS yearBook, A.name AS adName, A.phone AS phone, Ad.id AS addressId, Ad.street AS street, Ad.town AS town, Ad.postCode AS postCode, C.id AS categoryId, C.name AS category "
+            		   + "FROM Ad A "
+            		   + "LEFT OUTER JOIN Address Ad ON  A.address = Ad.id "
+            		   + "LEFT OUTER JOIN Category C ON A.category = C.id "
+            		   + "WHERE A.yearBook = ? AND A.name  like ? ;");
+               preparedStatement.setInt(1, yearBook);
+               preparedStatement.setString(2, '%' + name + '%');;
+               ResultSet result = preparedStatement.executeQuery();
+               while (result.next()) {
+               	String adName = result.getString("adName");
+               	String phone = result.getString("phone");
+
+               	Ad tmpAd = new Ad(yearBook, adName.toLowerCase(Locale.FRENCH));
+               	tmpAd.setPhone(phone);
+               	//tmpAd.setCategory(new Category(result.getInt("categoryId"), result.getString("category")));
+               	//tmpAd.setAddress(new Address(result.getString("street"), result.getString("town"), result.getString("postCode")));
                	ads.add(tmpAd);
                }
                yearBookBean.setAds(ads);

@@ -130,4 +130,20 @@ public class Main {
 			throw e;
 		}
 	}
+	
+	public String getAdsByCategory(int yearBook, String category) throws DaoException{
+		try {
+			return this.yearBookDao.getAdsByCategory(yearBook, category);
+		} catch (DaoException e) {
+			throw e;
+		}
+	}
+	
+	public String getAdsByName(int yearBook, String name) throws DaoException{
+		try {
+			return this.yearBookDao.getAdsByName(yearBook, name);
+		} catch (DaoException e) {
+			throw e;
+		}
+	}
 }
