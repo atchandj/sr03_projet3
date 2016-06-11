@@ -14,11 +14,9 @@
 
 			    					<xsd:element name="adresse">
 			    						<xsd:complexType>
-			    							<xsd:all>
-			    								<xsd:element name="rue" type="xsd:string"></xsd:element>
-			    								<xsd:element name="ville" type="xsd:string"></xsd:element>
-			    								<xsd:element name="codePostal"	type="xsd:string"></xsd:element>
-			    							</xsd:all>
+		    								<xsd:attribute name="rue" type="xsd:string" use="required"></xsd:attribute>
+		    								<xsd:attribute name="ville" type="xsd:string" use="required"></xsd:attribute>
+		    								<xsd:attribute name="codePostal" type="xsd:string" use="required"></xsd:attribute>
 			    						</xsd:complexType>
 			    					</xsd:element>
 			    				</xsd:all>
