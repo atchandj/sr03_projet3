@@ -122,4 +122,12 @@ public class Main {
 			throw e;
 		}
 	}
+	
+	public String getAdsByAddress(int yearBook, String street, String town, String postCode) throws DaoException{
+		try {
+			return this.yearBookDao.getAdsByAddress(yearBook, street, town, postCode);
+		} catch (DaoException e) {
+			throw e;
+		}
+	}
 }

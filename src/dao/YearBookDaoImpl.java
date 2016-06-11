@@ -319,4 +319,50 @@ public class YearBookDaoImpl implements YearBookDao {
             }
         }
     }
+    
+    @Override
+   	public String getAdsByAddress(int yearBook, String street, String town, String postCode) throws DaoException{
+       	YearBook yearBookBean = new YearBook(yearBook);
+       	ArrayList<Ad> ads = new ArrayList<Ad>();
+           Connection connexion = null;
+           PreparedStatement preparedStatement = null;
+           ObjectMapper mapper = new ObjectMapper();
+           String jsonInString = null;
+           try{
+               connexion = daoFactory.getConnection();
+               preparedStatement = (PreparedStatement) connexion.prepareStatement(
+            		   "SELECT A.yearBook AS yearBook, A.name AS adName, A.phone AS phone, Ad.id AS addressId, Ad.street AS street, Ad.town AS town, Ad.postCode AS postCode, C.id AS categoryId, C.name AS category "
+            		   + "FROM Ad A "
+            		   + "LEFT OUTER JOIN Address Ad ON  A.address = Ad.id "
+            		   + "LEFT OUTER JOIN Category C ON A.category = C.id "
+            		   + "WHERE A.yearBook = ? AND Ad.street like ? AND Ad.town like ? AND Ad.postCode like ?;");
+               preparedStatement.setInt(1, yearBook);
+               preparedStatement.setString(2, '%' + street + '%');;
+               preparedStatement.setString(3, '%' +  town + '%');
+               preparedStatement.setString(4, '%' + postCode + '%');
+               ResultSet result = preparedStatement.executeQuery();
+               while (result.next()) {
+               	String adName = result.getString("adName");
+
+               	Ad tmpAd = new Ad(yearBook, adName.toLowerCase(Locale.FRENCH));                
+               	ads.add(tmpAd);
+               }
+               yearBookBean.setAds(ads);
+               jsonInString = mapper.writeValueAsString(yearBookBean);
+           } catch (SQLException e) {
+               throw new DaoException("Impossible de communiquer avec la base de données " + e.getMessage());
+           } catch (JsonProcessingException e) {
+           	throw new DaoException("Impossible de communiquer avec la base de données " + e.getMessage());
+   		}
+           finally {
+               try {
+                   if (connexion != null) {
+                       connexion.close();  
+                   }
+               } catch (SQLException e) {
+                   throw new DaoException("Impossible de communiquer avec la base de données");
+               }
+           }
+           return jsonInString;
+       }
 }
