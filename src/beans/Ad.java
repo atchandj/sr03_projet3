@@ -1,6 +1,6 @@
 package beans;
 
-
+/* This bean represents an ad */
 public class Ad {
 	private int yearBook;
 	private String name;

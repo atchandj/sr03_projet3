@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Locale;
-import java.util.regex.Pattern;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -12,6 +11,9 @@ import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 
 
+/* The implementation of the class witch interacts with the database 
+ * to add, modify or delete some elements linked to an year book.
+ * */
 public class AdDaoImpl implements AdDao {
 	private DaoFactory daoFactory;
 	

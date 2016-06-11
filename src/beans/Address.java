@@ -1,5 +1,6 @@
 package beans;
 
+/* This bean represents an address */
 public class Address {
 	private int id;
 	private String street;

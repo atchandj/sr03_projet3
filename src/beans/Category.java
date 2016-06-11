@@ -1,5 +1,6 @@
 package beans;
 
+/* This bean represents a category */
 public class Category {
 	private int id;
 	private String name;

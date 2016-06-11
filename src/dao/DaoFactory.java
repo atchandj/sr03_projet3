@@ -14,6 +14,7 @@ import dao.YearBookDao;
 import dao.YearBookDaoImpl;
 
 
+/* This class is our factoy in our dao model */
 public class DaoFactory {
     private static final String FILE_PROPERTIES = "/dao/dao.properties";
     private static final String PROPERTY_URL = "url";

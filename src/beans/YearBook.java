@@ -2,6 +2,7 @@ package beans;
 
 import java.util.ArrayList;
 
+/* This bean represents a year book */
 public class YearBook {
 	private int id;
 	private String name;

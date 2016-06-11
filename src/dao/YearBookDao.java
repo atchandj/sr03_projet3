@@ -1,5 +1,8 @@
 package dao;
 
+/* The interface of the class witch interacts with the database 
+ * to add, modify or delete some elements directly inked to a year book.
+ * */
 public interface YearBookDao {
 	public void dropAd(int yearBook, String adName) throws DaoException;
 	public String getAdsNames(int yearBook) throws DaoException;

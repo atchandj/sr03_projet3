@@ -1,5 +1,8 @@
 package dao;
 
+/* The interface of the class witch interacts with the database 
+ * to add, modify or delete some elements linked to an ad.
+ * */
 public interface AdDao {
     void dropCategory(String category) throws DaoException;
 	void updateCategory(String oldCategoryName, String newCategoryName) throws DaoException;
