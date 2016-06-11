@@ -82,6 +82,16 @@
         <parameter xmlns:pns="http://DefaultNamespace" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:category" type="tns:string"/>
         <fault xmlns:fns="http://DefaultNamespace" xmlns:tns="http://dao" name="DaoException" qname="fns:fault" class="dao.DaoException" type="tns:DaoException"/>
       </operation>
+      <operation xmlns:operNS="http://DefaultNamespace" xmlns:retNS="http://DefaultNamespace" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getAdsByCategory" qname="operNS:getAdsByCategory" returnQName="retNS:getAdsByCategoryReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://DefaultNamespace" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:yearBook" type="tns:int"/>
+        <parameter xmlns:pns="http://DefaultNamespace" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:category" type="tns:string"/>
+        <fault xmlns:fns="http://DefaultNamespace" xmlns:tns="http://dao" name="DaoException" qname="fns:fault" class="dao.DaoException" type="tns:DaoException"/>
+      </operation>
+      <operation xmlns:operNS="http://DefaultNamespace" xmlns:retNS="http://DefaultNamespace" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getAdsByName" qname="operNS:getAdsByName" returnQName="retNS:getAdsByNameReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://DefaultNamespace" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:yearBook" type="tns:int"/>
+        <parameter xmlns:pns="http://DefaultNamespace" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:name" type="tns:string"/>
+        <fault xmlns:fns="http://DefaultNamespace" xmlns:tns="http://dao" name="DaoException" qname="fns:fault" class="dao.DaoException" type="tns:DaoException"/>
+      </operation>
       <operation xmlns:operNS="http://DefaultNamespace" xmlns:retNS="http://DefaultNamespace" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getAdsByAddress" qname="operNS:getAdsByAddress" returnQName="retNS:getAdsByAddressReturn" returnType="rtns:string" soapAction="">
         <parameter xmlns:pns="http://DefaultNamespace" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:yearBook" type="tns:int"/>
         <parameter xmlns:pns="http://DefaultNamespace" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:street" type="tns:string"/>
@@ -89,7 +99,7 @@
         <parameter xmlns:pns="http://DefaultNamespace" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:postCode" type="tns:string"/>
         <fault xmlns:fns="http://DefaultNamespace" xmlns:tns="http://dao" name="DaoException" qname="fns:fault" class="dao.DaoException" type="tns:DaoException"/>
       </operation>
-      <parameter name="allowedMethods" value="getCategoriesNames addAd getAd updateCategory dropCategory modifyAd dropAd addCategory getPostCodes getYearBook getStreetsNames getAdsByAddress getTownsNames getAdsNames"/>
+      <parameter name="allowedMethods" value="getCategoriesNames addAd getAd getAdsByCategory updateCategory dropCategory modifyAd dropAd addCategory getPostCodes getYearBook getAdsByName getStreetsNames getAdsByAddress getTownsNames getAdsNames"/>
 
       <typeMapping xmlns:ns="http://dao" qname="ns:DaoException" type="java:dao.DaoException" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
   </service>

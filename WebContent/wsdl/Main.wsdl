@@ -184,6 +184,36 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <element name="addAdResponse">
     <complexType/>
    </element>
+   <element name="getAdsByCategory">
+    <complexType>
+     <sequence>
+      <element name="yearBook" type="xsd:int"/>
+      <element name="category" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getAdsByCategoryResponse">
+    <complexType>
+     <sequence>
+      <element name="getAdsByCategoryReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getAdsByName">
+    <complexType>
+     <sequence>
+      <element name="yearBook" type="xsd:int"/>
+      <element name="name" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getAdsByNameResponse">
+    <complexType>
+     <sequence>
+      <element name="getAdsByNameReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
    <element name="getAdsByAddress">
     <complexType>
      <sequence>
@@ -337,6 +367,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="getAdsByNameRequest">
+
+      <wsdl:part element="impl:getAdsByName" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="updateCategoryRequest">
 
       <wsdl:part element="impl:updateCategory" name="parameters">
@@ -372,6 +410,22 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <wsdl:message name="getYearBookResponse">
 
       <wsdl:part element="impl:getYearBookResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAdsByNameResponse">
+
+      <wsdl:part element="impl:getAdsByNameResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAdsByCategoryRequest">
+
+      <wsdl:part element="impl:getAdsByCategory" name="parameters">
 
       </wsdl:part>
 
@@ -420,6 +474,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <wsdl:message name="updateCategoryResponse">
 
       <wsdl:part element="impl:updateCategoryResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAdsByCategoryResponse">
+
+      <wsdl:part element="impl:getAdsByCategoryResponse" name="parameters">
 
       </wsdl:part>
 
@@ -642,6 +704,38 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
        </wsdl:input>
 
          <wsdl:output message="impl:addAdResponse" name="addAdResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:DaoException" name="DaoException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAdsByCategory">
+
+         <wsdl:input message="impl:getAdsByCategoryRequest" name="getAdsByCategoryRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getAdsByCategoryResponse" name="getAdsByCategoryResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:DaoException" name="DaoException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAdsByName">
+
+         <wsdl:input message="impl:getAdsByNameRequest" name="getAdsByNameRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getAdsByNameResponse" name="getAdsByNameResponse">
 
        </wsdl:output>
 
@@ -972,6 +1066,54 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="addAdResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="DaoException">
+
+            <wsdlsoap:fault name="DaoException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAdsByCategory">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAdsByCategoryRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAdsByCategoryResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="DaoException">
+
+            <wsdlsoap:fault name="DaoException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAdsByName">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAdsByNameRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAdsByNameResponse">
 
             <wsdlsoap:body use="literal"/>
 
