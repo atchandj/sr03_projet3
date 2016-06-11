@@ -92,7 +92,14 @@
         <parameter qname="pns:category" xmlns:pns="http://DefaultNamespace" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
         <fault name="DaoException" qname="fns:fault" xmlns:fns="http://DefaultNamespace" class="dao.DaoException" type="tns:DaoException" xmlns:tns="http://dao"/>
       </operation>
-      <parameter name="allowedMethods" value="getCategoriesNames addAd getAd updateCategory dropCategory modifyAd dropAd addCategory getPostCodes getYearBook getStreetsNames getTownsNames getAdsNames"/>
+      <operation name="getAdsByAddress" qname="operNS:getAdsByAddress" xmlns:operNS="http://DefaultNamespace" returnQName="retNS:getAdsByAddressReturn" xmlns:retNS="http://DefaultNamespace" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:yearBook" xmlns:pns="http://DefaultNamespace" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:street" xmlns:pns="http://DefaultNamespace" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:town" xmlns:pns="http://DefaultNamespace" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:postCode" xmlns:pns="http://DefaultNamespace" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="DaoException" qname="fns:fault" xmlns:fns="http://DefaultNamespace" class="dao.DaoException" type="tns:DaoException" xmlns:tns="http://dao"/>
+      </operation>
+      <parameter name="allowedMethods" value="getCategoriesNames addAd getAd updateCategory dropCategory modifyAd dropAd addCategory getPostCodes getYearBook getStreetsNames getAdsByAddress getTownsNames getAdsNames"/>
 
       <typeMapping
         xmlns:ns="http://dao"

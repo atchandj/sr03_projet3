@@ -184,6 +184,23 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <element name="addAdResponse">
     <complexType/>
    </element>
+   <element name="getAdsByAddress">
+    <complexType>
+     <sequence>
+      <element name="yearBook" type="xsd:int"/>
+      <element name="street" type="xsd:string"/>
+      <element name="town" type="xsd:string"/>
+      <element name="postCode" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getAdsByAddressResponse">
+    <complexType>
+     <sequence>
+      <element name="getAdsByAddressReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
   </schema>
   <schema elementFormDefault="qualified" targetNamespace="http://dao" xmlns="http://www.w3.org/2001/XMLSchema">
    <complexType name="DaoException">
@@ -360,6 +377,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="getAdsByAddressRequest">
+
+      <wsdl:part element="impl:getAdsByAddress" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="getCategoriesNamesRequest">
 
       <wsdl:part element="impl:getCategoriesNames" name="parameters">
@@ -395,6 +420,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <wsdl:message name="updateCategoryResponse">
 
       <wsdl:part element="impl:updateCategoryResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAdsByAddressResponse">
+
+      <wsdl:part element="impl:getAdsByAddressResponse" name="parameters">
 
       </wsdl:part>
 
@@ -609,6 +642,22 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
        </wsdl:input>
 
          <wsdl:output message="impl:addAdResponse" name="addAdResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:DaoException" name="DaoException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAdsByAddress">
+
+         <wsdl:input message="impl:getAdsByAddressRequest" name="getAdsByAddressRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getAdsByAddressResponse" name="getAdsByAddressResponse">
 
        </wsdl:output>
 
@@ -923,6 +972,30 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="addAdResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="DaoException">
+
+            <wsdlsoap:fault name="DaoException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAdsByAddress">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAdsByAddressRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAdsByAddressResponse">
 
             <wsdlsoap:body use="literal"/>
 

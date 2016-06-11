@@ -105,7 +105,14 @@
    <ns1:parameter qname="ns25:category" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
    <ns1:fault class="dao.DaoException" qname="ns25:fault" type="ns26:DaoException" xmlns:ns26="http://dao"/>
   </ns1:operation>
-  <ns1:parameter name="allowedMethods" value="getCategoriesNames addAd getAd updateCategory dropCategory modifyAd dropAd addCategory getPostCodes getYearBook getStreetsNames getTownsNames getAdsNames"/>
+  <ns1:operation name="getAdsByAddress" qname="ns27:getAdsByAddress" returnQName="ns27:getAdsByAddressReturn" returnType="xsd:string" soapAction="" xmlns:ns27="http://DefaultNamespace" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns27:yearBook" type="xsd:int"/>
+   <ns1:parameter qname="ns27:street" type="xsd:string"/>
+   <ns1:parameter qname="ns27:town" type="xsd:string"/>
+   <ns1:parameter qname="ns27:postCode" type="xsd:string"/>
+   <ns1:fault class="dao.DaoException" qname="ns27:fault" type="ns28:DaoException" xmlns:ns28="http://dao"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="getCategoriesNames addAd getAd updateCategory dropCategory modifyAd dropAd addCategory getPostCodes getYearBook getStreetsNames getAdsByAddress getTownsNames getAdsNames"/>
   <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="wsdlPortType" value="Main"/>
   <ns1:parameter name="className" value="Main"/>
@@ -113,7 +120,7 @@
   <ns1:parameter name="schemaQualified" value="http://dao,http://DefaultNamespace"/>
   <ns1:parameter name="wsdlTargetNamespace" value="http://DefaultNamespace"/>
   <ns1:parameter name="wsdlServiceElement" value="MainService"/>
-  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns27:DaoException" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:dao.DaoException" xmlns:ns27="http://dao"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns29:DaoException" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:dao.DaoException" xmlns:ns29="http://dao"/>
  </ns1:service>
  <ns1:transport name="http">
   <ns1:requestFlow>
