@@ -136,10 +136,28 @@ public class Main {
 		}
 	}
 	
-	/* This service allows the user to get a JSON array with the ads names based on an adress */
+	/* This service allows the user to get a JSON array with the ads names based on a part of an adress */
 	public String getAdsByAddress(int yearBook, String street, String town, String postCode) throws DaoException{
 		try {
 			return this.yearBookDao.getAdsByAddress(yearBook, street, town, postCode);
+		} catch (DaoException e) {
+			throw e;
+		}
+	}
+	
+	/* This service allows the user to get a JSON array with the ads names based on a part of a category */
+	public String getAdsByCategory(int yearBook, String category) throws DaoException{
+		try {
+			return this.yearBookDao.getAdsByCategory(yearBook, category);
+		} catch (DaoException e) {
+			throw e;
+		}
+	}
+	
+	/* This service allows the user to get a JSON array with the ads names based on a part of an ad name */
+	public String getAdsByName(int yearBook, String name) throws DaoException{
+		try {
+			return this.yearBookDao.getAdsByName(yearBook, name);
 		} catch (DaoException e) {
 			throw e;
 		}

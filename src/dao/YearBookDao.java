@@ -11,4 +11,6 @@ public interface YearBookDao {
 	public void addAd(int yearBook, String adName, String phone, String street, String town, String postCode, String category) throws DaoException;
 	public void modifyAd(int yearBook, String oldAdName, String oldStreet, String oldTown, String oldPostCode, String oldCategory, String newAdName, String newPhone, String newStreet, String newTown, String newPostCode, String newCategory) throws DaoException;
 	public String getAdsByAddress(int yearBook, String street, String town, String postCode) throws DaoException;
+	public String getAdsByCategory(int yearBook, String category) throws DaoException;
+	public String getAdsByName(int yearBook, String name) throws DaoException;
 }
