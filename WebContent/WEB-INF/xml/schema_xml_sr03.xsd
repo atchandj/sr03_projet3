@@ -11,7 +11,6 @@
 			    				<xsd:all>
 			    					<xsd:element name="nom" type="xsd:string"></xsd:element>
 			    					<xsd:element name="tel" type="xsd:string"></xsd:element>
-
 			    					<xsd:element name="adresse">
 			    						<xsd:complexType>
 		    								<xsd:attribute name="rue" type="xsd:string" use="required"></xsd:attribute>
@@ -26,7 +25,6 @@
 		    		<xsd:attribute name="nom" type="xsd:string"></xsd:attribute>
 	    		</xsd:complexType>
 	    	</xsd:element>
-
     	</xsd:sequence>
     	<xsd:attribute name="nom" type="xsd:string"></xsd:attribute>
     </xsd:complexType>
