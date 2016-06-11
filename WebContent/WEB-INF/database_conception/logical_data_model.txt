@@ -76,12 +76,12 @@ où K est une clé et A un attribut n'appartenant pas à une clé). */
 -----------------------------------------------------------------------------------------------
 
 Ad(
-	yearBook=>YearBook,
-	name: VARCHAR(50),
+	#yearBook=>YearBook,
+	#name: VARCHAR(50),
 	phone: VARCHAR(10),
 	category=>Category,
 	address=>Address
-) avec KEY(yearBook, name) et phone NOT NULL
+) phone NOT NULL
 
 F+ = {
 	(yearBook, name) -> id;
@@ -100,4 +100,7 @@ La relation Ad est en BCNF car elle est en 3NF et que tout attribut n'appartenan
 d'une DF vers une partie d'une clé (ou encore toutes les DFE, celles dans F+, ont la forme K -> A
 où K est une clé et A un attribut n'appartenant pas à une clé). */
 
------------------------------------------------------------------------------------------------
+
+======================================== Remarque ========================================
+
+/* Toutes les relations du Modèle Logique de Données sont en BCNF (Boyce-Codd Normal Form). */

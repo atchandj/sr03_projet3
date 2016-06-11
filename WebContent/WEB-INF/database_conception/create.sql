@@ -35,7 +35,7 @@ CREATE TABLE Ad(
 	phone VARCHAR(10) NOT NULL,
 	category INT,
 	address INT,
-	UNIQUE(yearBook, name),
+	PRIMARY KEY(yearBook, name),
 	FOREIGN KEY(yearBook) REFERENCES YearBook(id) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY(category) REFERENCES Category(id),
 	FOREIGN KEY(address) REFERENCES Address(id)
