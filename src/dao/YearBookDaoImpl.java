@@ -280,7 +280,7 @@ public class YearBookDaoImpl implements YearBookDao {
         		+ "SET name = ?, phone = ? "
         		+ "WHERE yearBook = ? AND name = ?;";
         String databaseErrorMessage = "Impossible de communiquer avec la base de données";
-        if( !Pattern.matches("^[0-9]{10}$", newPhone) || !Pattern.matches("^[0-9]{5}$", oldPostCode) || !Pattern.matches("^[0-9]{5}$", newPostCode) ){
+        if( (!Pattern.matches("^$", newPhone) && !Pattern.matches("^[0-9]{10}$", newPhone) ) || ( !Pattern.matches("^$", oldPostCode) && !Pattern.matches("^[0-9]{5}$", oldPostCode) ) || ( !Pattern.matches("^$", newPostCode) && !Pattern.matches("^[0-9]{5}$", newPostCode) ) ){
         	throw new DaoException("Veuillez saisir des données cohérentes.");
         } 
         try{
